@@ -1,5 +1,5 @@
 
-import { StyleSheet, View, ImageBackground, TextInput, Text} from 'react-native';
+import { StyleSheet, View, ImageBackground, TextInput, Text, Button} from 'react-native';
 // import RegistrationScreen from "./Screens/RegistrationScreen"
 
 export default function App() {
@@ -18,6 +18,7 @@ export default function App() {
         <Text style={styles.inputTitle}>Password:</Text>
        <TextInput style={styles.input} textAlign={"center"} secureTextEntry={true} />
        </View>
+       <Button title='SIGN IN'/>
        </View>
       </ImageBackground>
     </View>
