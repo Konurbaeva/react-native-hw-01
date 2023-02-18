@@ -1,5 +1,12 @@
-
-import { StyleSheet, View, ImageBackground, TextInput, Text, TouchableOpacity, Platform} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  ImageBackground,
+  TextInput,
+  Text,
+  TouchableOpacity,
+  Platform,
+} from "react-native";
 // import RegistrationScreen from "./Screens/RegistrationScreen"
 
 export default function App() {
@@ -9,19 +16,23 @@ export default function App() {
         style={styles.image}
         source={require("./assets/PhotoBG.png")}
       >
-       <View style={styles.form}> 
-       <View>
-        <Text style={styles.inputTitle}>Email address:</Text>
-       <TextInput style={styles.input} textAlign={"center"} />
-       </View>
-       <View style={{marginTop: 20}}>
-        <Text style={styles.inputTitle}>Password:</Text>
-       <TextInput style={styles.input} textAlign={"center"} secureTextEntry={true} />
-       </View>
-      <TouchableOpacity activeOpacity={0.7} style={styles.button}>
-<Text style={styles.buttonTitle}>SIGN IN</Text>
-      </TouchableOpacity>
-       </View>
+        <View style={styles.form}>
+          <View>
+            <Text style={styles.inputTitle}>Email address:</Text>
+            <TextInput style={styles.input} textAlign={"center"} />
+          </View>
+          <View style={{ marginTop: 20 }}>
+            <Text style={styles.inputTitle}>Password:</Text>
+            <TextInput
+              style={styles.input}
+              textAlign={"center"}
+              secureTextEntry={true}
+            />
+          </View>
+          <TouchableOpacity activeOpacity={0.7} style={styles.button}>
+            <Text style={styles.buttonTitle}>SIGN IN</Text>
+          </TouchableOpacity>
+        </View>
       </ImageBackground>
     </View>
   );
@@ -35,7 +46,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: "cover",
-   // justifyContent: "flex-end",
+    // justifyContent: "flex-end",
     justifyContent: "center",
   },
   input: {
@@ -47,25 +58,38 @@ const styles = StyleSheet.create({
     color: "#f0f8ff",
   },
   form: {
-    marginHorizontal: 40
+    marginHorizontal: 40,
   },
   inputTitle: {
-color: "#f0f8ff",
-marginBottom:10,
-fontSize:18
+    color: "#f0f8ff",
+    marginBottom: 10,
+    fontSize: 18,
   },
   button: {
-   // backgroundColor: "#008000",
-   backgroundColor: Platform.OS === 'ios' ? 'transparent':'#ffb6c1',
     height: 40,
-    borderRadius:6,
-    borderColor:  Platform.OS === 'ios' ? "#f0f8ff": 'transparent',
-    marginTop:10,
-    justifyContent:"center",
-    alignItems:"center"
+    borderRadius: 6,
+    marginTop: 10,
+    justifyContent: "center",
+    alignItems: "center",
+
+    backgroundColor: Platform.OS === "ios" ? "transparent" : "#ffb6c1",
+    borderColor: Platform.OS === "ios" ? "#f0f8ff" : "transparent",
+
+    ...Platform.select({
+      ios: {
+        backgroundColor: "red",
+      },
+      android: {
+        backgroundColor: "green",
+      },
+      default: {
+        // other platforms, web for example
+        backgroundColor: "blue",
+      },
+    }),
   },
   buttonTitle: {
-    fontStyle:"normal",
-    fontSize:18
-  }
+    fontStyle: "normal",
+    fontSize: 18,
+  },
 });
