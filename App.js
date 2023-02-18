@@ -23,11 +23,14 @@ const [isShowKeyboard, setIsShowKeyboard] = useState(false)
 
     
         <View style={{...styles.form, marginBottom: isShowKeyboard? 20 : 100}}>
+          <View style={styles.header}> 
+          <Text style={styles.headerTitle}>Регистрация</Text>
+          </View>
           <View>
             <Text style={styles.inputTitle} 
             onFocus={() => setIsShowKeyboard(true)}
             >Email address:</Text>
-            <TextInput style={styles.input} textAlign={"center"} />
+            <TextInput style={styles.input} textAlign={"center"}  placeholder="Адрес электронной почты"/>
           </View>
           <View style={{ marginTop: 20 }}>
             <Text style={styles.inputTitle}>Password:</Text>
@@ -36,12 +39,13 @@ const [isShowKeyboard, setIsShowKeyboard] = useState(false)
               textAlign={"center"}
               secureTextEntry={true}
               onFocus={() => setIsShowKeyboard(true)}
+              placeholder="Пароль"
             />
           </View>
           <TouchableOpacity activeOpacity={0.7} style={styles.button} 
           onPress={() => setIsShowKeyboard(false)}
           >
-            <Text style={styles.buttonTitle}>SIGN IN</Text>
+            <Text style={styles.buttonTitle}>Зарегистрироваться</Text>
           </TouchableOpacity>
         </View>
         </KeyboardAvoidingView>
@@ -81,6 +85,7 @@ const styles = StyleSheet.create({
   button: {
     height: 40,
     borderRadius: 6,
+    borderWidth: 1,
     marginTop: 10,
     justifyContent: "center",
     alignItems: "center",
@@ -103,4 +108,13 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     fontSize: 18,
   },
+  header: {
+    fontSize: 25,
+    color: "#212121",
+    textAlign:"center"
+  }, 
+  headerTitle: {
+    fontSize: 30,
+    color: "#f0f8ff"
+  }
 });
