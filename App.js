@@ -1,5 +1,5 @@
 
-import { StyleSheet, View, ImageBackground, TextInput, Text, TouchableOpacity} from 'react-native';
+import { StyleSheet, View, ImageBackground, TextInput, Text, TouchableOpacity, Platform} from 'react-native';
 // import RegistrationScreen from "./Screens/RegistrationScreen"
 
 export default function App() {
@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: "cover",
-    justifyContent: "flex-end",
+   // justifyContent: "flex-end",
+    justifyContent: "center",
   },
   input: {
     borderWidth: 1,
@@ -54,9 +55,11 @@ marginBottom:10,
 fontSize:18
   },
   button: {
-    backgroundColor: "#008000",
+   // backgroundColor: "#008000",
+   backgroundColor: Platform.OS === 'ios' ? 'transparent':'#ffb6c1',
     height: 40,
     borderRadius:6,
+    borderColor:  Platform.OS === 'ios' ? "#f0f8ff": 'transparent',
     marginTop:10,
     justifyContent:"center",
     alignItems:"center"
