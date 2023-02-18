@@ -1,5 +1,5 @@
 
-import { StyleSheet, View, ImageBackground, TextInput} from 'react-native';
+import { StyleSheet, View, ImageBackground, TextInput, Text} from 'react-native';
 // import RegistrationScreen from "./Screens/RegistrationScreen"
 
 export default function App() {
@@ -9,7 +9,16 @@ export default function App() {
         style={styles.image}
         source={require("./assets/PhotoBG.png")}
       >
-        <TextInput style={styles.input} textAlign={"center"} />
+       <View style={styles.form}> 
+       <View>
+        <Text style={styles.inputTitle}>Email address:</Text>
+       <TextInput style={styles.input} textAlign={"center"} />
+       </View>
+       <View style={{marginTop: 20}}>
+        <Text style={styles.inputTitle}>Password:</Text>
+       <TextInput style={styles.input} textAlign={"center"} secureTextEntry={true} />
+       </View>
+       </View>
       </ImageBackground>
     </View>
   );
@@ -33,4 +42,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 40,
     color: "#f0f8ff",
   },
+  form: {
+    marginHorizontal: 40
+  },
+  inputTitle: {
+color: "#f0f8ff",
+marginBottom:10,
+fontSize:18
+  }
 });
