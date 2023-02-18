@@ -6,19 +6,27 @@ import {
   Text,
   TouchableOpacity,
   Platform,
+  KeyboardAvoidingView
 } from "react-native";
 // import RegistrationScreen from "./Screens/RegistrationScreen"
+import { useState } from "react";
 
 export default function App() {
+const [isShowKeyboard, setIsShowKeyboard] = useState(false)
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.image}
         source={require("./assets/PhotoBG.png")}
       >
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+
+    
         <View style={styles.form}>
           <View>
-            <Text style={styles.inputTitle}>Email address:</Text>
+            <Text style={styles.inputTitle} 
+            onFocus={() => setIsShowKeyboard(true)}
+            >Email address:</Text>
             <TextInput style={styles.input} textAlign={"center"} />
           </View>
           <View style={{ marginTop: 20 }}>
@@ -27,12 +35,14 @@ export default function App() {
               style={styles.input}
               textAlign={"center"}
               secureTextEntry={true}
+              onFocus={() => setIsShowKeyboard(true)}
             />
           </View>
           <TouchableOpacity activeOpacity={0.7} style={styles.button}>
             <Text style={styles.buttonTitle}>SIGN IN</Text>
           </TouchableOpacity>
         </View>
+        </KeyboardAvoidingView>
       </ImageBackground>
     </View>
   );
@@ -59,6 +69,7 @@ const styles = StyleSheet.create({
   },
   form: {
     marginHorizontal: 40,
+    marginBottom:100
   },
   inputTitle: {
     color: "#f0f8ff",
@@ -71,16 +82,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     justifyContent: "center",
     alignItems: "center",
-
-    backgroundColor: Platform.OS === "ios" ? "transparent" : "#ffb6c1",
-    borderColor: Platform.OS === "ios" ? "#f0f8ff" : "transparent",
-
     ...Platform.select({
       ios: {
-        backgroundColor: "red",
+        backgroundColor: "transparent",
+        borderColor: "#f0f8ff"
       },
       android: {
-        backgroundColor: "green",
+        backgroundColor:  "#ffb6c1",
+        borderColor:  "transparent"
       },
       default: {
         // other platforms, web for example
