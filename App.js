@@ -38,7 +38,9 @@ const [isShowKeyboard, setIsShowKeyboard] = useState(false)
               onFocus={() => setIsShowKeyboard(true)}
             />
           </View>
-          <TouchableOpacity activeOpacity={0.7} style={styles.button}>
+          <TouchableOpacity activeOpacity={0.7} style={styles.button} 
+          onPress={() => setIsShowKeyboard(false)}
+          >
             <Text style={styles.buttonTitle}>SIGN IN</Text>
           </TouchableOpacity>
         </View>
