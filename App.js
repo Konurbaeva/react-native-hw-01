@@ -6,7 +6,9 @@ import {
   Text,
   TouchableOpacity,
   Platform,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard
 } from "react-native";
 // import RegistrationScreen from "./Screens/RegistrationScreen"
 import { useState } from "react";
@@ -14,7 +16,9 @@ import { useState } from "react";
 export default function App() {
 const [isShowKeyboard, setIsShowKeyboard] = useState(false)
   return (
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
     <View style={styles.container}>
+     
       <ImageBackground
         style={styles.image}
         source={require("./assets/PhotoBG.png")}
@@ -50,7 +54,9 @@ const [isShowKeyboard, setIsShowKeyboard] = useState(false)
         </View>
         </KeyboardAvoidingView>
       </ImageBackground>
+     
     </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -111,7 +117,8 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 25,
     color: "#212121",
-    textAlign:"center"
+    alignItems:"center",
+    marginBottom:150
   }, 
   headerTitle: {
     fontSize: 30,
