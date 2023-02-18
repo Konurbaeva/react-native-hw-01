@@ -22,7 +22,7 @@ const [isShowKeyboard, setIsShowKeyboard] = useState(false)
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 
     
-        <View style={styles.form}>
+        <View style={{...styles.form, marginBottom: isShowKeyboard? 20 : 100}}>
           <View>
             <Text style={styles.inputTitle} 
             onFocus={() => setIsShowKeyboard(true)}
