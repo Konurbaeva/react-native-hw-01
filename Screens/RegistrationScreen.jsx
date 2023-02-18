@@ -1,11 +1,11 @@
 import React from 'react';
-import {ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ImageBackground, TextInput} from 'react-native';
 
 
 const RegistrationScreen =() => (
     <View style={styles.container}>
-    <ImageBackground source={require('../assets/PhotoBG.png')} style={styles.image}>
-      <Text style={styles.text}>Inside</Text>
+    <ImageBackground style={styles.image} source={require('../assets/PhotoBG.png')}>
+     <TextInput style={styles.input}/>
     </ImageBackground>
   </View>
 )
@@ -14,19 +14,18 @@ const RegistrationScreen =() => (
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      backgroundColor:"#fff"
     },
     image: {
       flex: 1,
+      resizeMode:"cover",
       justifyContent: 'center',
+      alignItems: 'center'
     },
-    text: {
-      color: 'white',
-      fontSize: 42,
-      lineHeight: 84,
-      fontWeight: 'bold',
-      textAlign: 'center',
-      backgroundColor: '#000000c0',
-    },
+    input: {
+        borderWidth:1,
+        borderColor:"#f0f8ff"
+    }
   });
   
 
