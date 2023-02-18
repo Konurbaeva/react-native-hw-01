@@ -1,5 +1,5 @@
 
-import { StyleSheet, View, ImageBackground, TextInput, Text, Button} from 'react-native';
+import { StyleSheet, View, ImageBackground, TextInput, Text, TouchableOpacity} from 'react-native';
 // import RegistrationScreen from "./Screens/RegistrationScreen"
 
 export default function App() {
@@ -18,7 +18,9 @@ export default function App() {
         <Text style={styles.inputTitle}>Password:</Text>
        <TextInput style={styles.input} textAlign={"center"} secureTextEntry={true} />
        </View>
-       <Button title='SIGN IN'/>
+      <TouchableOpacity activeOpacity={0.7} style={styles.button}>
+<Text style={styles.buttonTitle}>SIGN IN</Text>
+      </TouchableOpacity>
        </View>
       </ImageBackground>
     </View>
@@ -50,5 +52,17 @@ const styles = StyleSheet.create({
 color: "#f0f8ff",
 marginBottom:10,
 fontSize:18
+  },
+  button: {
+    backgroundColor: "#008000",
+    height: 40,
+    borderRadius:6,
+    marginTop:10,
+    justifyContent:"center",
+    alignItems:"center"
+  },
+  buttonTitle: {
+    fontStyle:"normal",
+    fontSize:18
   }
 });
