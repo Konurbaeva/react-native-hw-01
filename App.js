@@ -12,15 +12,26 @@ import {
 } from "react-native";
 // import RegistrationScreen from "./Screens/RegistrationScreen"
 import { useState } from "react";
+import * as Font from "expo-font";
+// import { AppLoading } from "expo";
+import AppLoading from 'expo-app-loading';
 
 const initialState = {
   email: '',
   password:''
 }
 
+const loadApplication = async() => {
+  await Font.loadAsync({
+    'DMMono-Regular': require('./assets/fonts/DMMono-Regular.ttf')
+  })
+}
+
+
 export default function App() {
 const [isShowKeyboard, setIsShowKeyboard] = useState(false)
 const [state, setState] = useState(initialState)
+const [isReady, setIsReady] = useState(false)
 
  const keyboardHide = () => {
   setIsShowKeyboard(false)
@@ -29,14 +40,22 @@ const [state, setState] = useState(initialState)
   setState(initialState)
  }
 
+ if (!isReady) {
+  return (
+    <AppLoading
+      startAsync={loadApplication}
+      onFinish={() => setIsReady(true)}
+      onError={console.warn}
+    />
+  );
+}
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
     <View style={styles.container}>
      
       <ImageBackground
         style={styles.image}
-        source={require("./assets/PhotoBG.png")}
-      >
+        source={require("./assets/PhotoBG.png")}>
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 
     
@@ -51,7 +70,9 @@ const [state, setState] = useState(initialState)
             <TextInput style={styles.input} textAlign={"center"} 
              placeholder="Адрес электронной почты"
              value={state.email}
-            onChangeText={(value) => setState((prevState) => ({...prevState, email: value }))}
+             onChangeText={(value) =>
+              setState((prevState) => ({ ...prevState, email: value }))
+            }
             />
           </View>
           <View style={{ marginTop: 20 }}>
@@ -63,7 +84,9 @@ const [state, setState] = useState(initialState)
               onFocus={() => setIsShowKeyboard(true)}
               placeholder="Пароль"
               value={state.password}
-              onChangeText={(value) => setState((prevState) => ({...prevState, password: value }))}
+              onChangeText={(value) =>
+                setState((prevState) => ({ ...prevState, password: value }))
+              }
             />
           </View>
           <TouchableOpacity activeOpacity={0.7} style={styles.button} 
@@ -142,6 +165,7 @@ const styles = StyleSheet.create({
   }, 
   headerTitle: {
     fontSize: 30,
-    color: "#f0f8ff"
+    color: "#f0f8ff",
+    fontFamily: 'DMMono-Regular'
   }
 });
