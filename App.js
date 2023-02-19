@@ -34,6 +34,8 @@ const [isShowKeyboard, setIsShowKeyboard] = useState(false)
 const [state, setState] = useState(initialState)
 const [isReady, setIsReady] = useState(false)
 
+const [dimensions, setDimensions] = useState(Dimensions.get("window").width-20*2)
+
  const keyboardHide = () => {
   setIsShowKeyboard(false)
   Keyboard.dismiss()
@@ -44,7 +46,7 @@ const [isReady, setIsReady] = useState(false)
  useEffect(() => {
  const onChange= () => {
   const width = Dimensions.get("window").width
-  console.log('width: ', width)
+  setDimensions(width)
  }
  Dimensions.addEventListener('change', onChange)
 
@@ -72,7 +74,7 @@ const [isReady, setIsReady] = useState(false)
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 
     
-        <View style={{...styles.form, marginBottom: isShowKeyboard? 20 : 100}}>
+        <View style={{...styles.form, marginBottom: isShowKeyboard? 20 : 100, width: dimensions}}>
           <View style={styles.header}> 
           <Text style={styles.headerTitle}>Регистрация</Text>
           </View>
@@ -136,7 +138,7 @@ const styles = StyleSheet.create({
     color: "#f0f8ff",
   },
   form: {
-    marginHorizontal: 40,
+   // marginHorizontal: 40,
     marginBottom:100
   },
   inputTitle: {
