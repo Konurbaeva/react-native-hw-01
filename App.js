@@ -8,10 +8,11 @@ import {
   Platform,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Dimensions
 } from "react-native";
 // import RegistrationScreen from "./Screens/RegistrationScreen"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as Font from "expo-font";
 // import { AppLoading } from "expo";
 import AppLoading from 'expo-app-loading';
@@ -39,6 +40,18 @@ const [isReady, setIsReady] = useState(false)
   console.log(state)
   setState(initialState)
  }
+
+ useEffect(() => {
+ const onChange= () => {
+  const width = Dimensions.get("window").width
+  console.log('width: ', width)
+ }
+ Dimensions.addEventListener('change', onChange)
+
+ return () => {
+  Dimensions.removeEventListener('change', onChange)
+ }
+ }, [])
 
  if (!isReady) {
   return (
