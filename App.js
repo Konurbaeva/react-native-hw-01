@@ -13,10 +13,24 @@ import {
 // import RegistrationScreen from "./Screens/RegistrationScreen"
 import { useState } from "react";
 
+const initialState = {
+  email: '',
+  password:''
+}
+
 export default function App() {
 const [isShowKeyboard, setIsShowKeyboard] = useState(false)
+const [state, setState] = useState(initialState)
+
+ const keyboardHide = () => {
+  setIsShowKeyboard(false)
+  Keyboard.dismiss()
+  console.log(state)
+  setState(initialState)
+ }
+
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    <TouchableWithoutFeedback onPress={keyboardHide}>
     <View style={styles.container}>
      
       <ImageBackground
@@ -34,7 +48,11 @@ const [isShowKeyboard, setIsShowKeyboard] = useState(false)
             <Text style={styles.inputTitle} 
             onFocus={() => setIsShowKeyboard(true)}
             >Email address:</Text>
-            <TextInput style={styles.input} textAlign={"center"}  placeholder="Адрес электронной почты"/>
+            <TextInput style={styles.input} textAlign={"center"} 
+             placeholder="Адрес электронной почты"
+             value={state.email}
+            onChangeText={(value) => setState((prevState) => ({...prevState, email: value }))}
+            />
           </View>
           <View style={{ marginTop: 20 }}>
             <Text style={styles.inputTitle}>Password:</Text>
@@ -44,6 +62,8 @@ const [isShowKeyboard, setIsShowKeyboard] = useState(false)
               secureTextEntry={true}
               onFocus={() => setIsShowKeyboard(true)}
               placeholder="Пароль"
+              value={state.password}
+              onChangeText={(value) => setState((prevState) => ({...prevState, password: value }))}
             />
           </View>
           <TouchableOpacity activeOpacity={0.7} style={styles.button} 
