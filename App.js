@@ -9,7 +9,8 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  Dimensions
+  Dimensions,
+  Image
 } from "react-native";
 // import RegistrationScreen from "./Screens/RegistrationScreen"
 import { useState, useEffect } from "react";
@@ -73,7 +74,7 @@ const [dimensions, setDimensions] = useState(Dimensions.get("window").width-20*2
         source={require("./assets/PhotoBG.png")}>
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 
-    
+         <Image  style={styles.imageWhite} source={require("./assets/BG.png")}/>
         <View style={{...styles.form, marginBottom: isShowKeyboard? 20 : 100, width: dimensions}}>
           <View style={styles.header}> 
           <Text style={styles.headerTitle}>Регистрация</Text>
@@ -128,6 +129,11 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     // justifyContent: "flex-end",
     justifyContent: "center",
+  },
+  imageWhite: {
+    flex: 1,
+   position: 'absolute',
+   justifyContent: "center"
   },
   input: {
     borderWidth: 1,
