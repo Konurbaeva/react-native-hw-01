@@ -49,11 +49,9 @@ const [dimensions, setDimensions] = useState(Dimensions.get("window").width-20*2
   const width = Dimensions.get("window").width
   setDimensions(width)
  }
- Dimensions.addEventListener('change', onChange)
+ dimensionsHandler = Dimensions.addEventListener('change', onChange)
 
- return () => {
-  Dimensions.removeEventListener('change', onChange)
- }
+return ()=> dimensionsHandler.remove()
  }, [])
 
  if (!isReady) {
@@ -131,10 +129,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   image: {
+    // flex: 1,
+    // resizeMode: "cover",
+    // // justifyContent: "flex-end",
+    // justifyContent: "center",
     flex: 1,
     resizeMode: "cover",
-    // justifyContent: "flex-end",
-    justifyContent: "center",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
   imageWhite: {
     flex: 1,
