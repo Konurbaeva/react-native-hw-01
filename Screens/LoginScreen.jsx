@@ -96,7 +96,7 @@ export default function LoginScreen({navigation}) {
           />
             <View style={{... globalStyles.form, marginBottom: isShowKeyboard? 20 : 100, width: dimensions}}>
               <View style={ globalStyles.header}> 
-              <Text style={ globalStyles.headerTitle}>Регистрация</Text>
+              <Text style={ globalStyles.headerTitle}>Войти</Text>
               </View>
               <View>
                 <Text style={ globalStyles.inputTitle} 
