@@ -56,12 +56,12 @@ import {
       marginTop: 10,
       justifyContent: "center",
       alignItems: "center",
-      // background: "#FF6C00",
-     // color: "#FF6C00",
+      background: "#FF6C00",
       ...Platform.select({
         ios: {
           backgroundColor: "transparent",
-          borderColor: colors.secondary
+          borderColor: colors.secondary,
+          backgroundColor: colors.third
         },
         android: {
           backgroundColor:  "#ffb6c1",

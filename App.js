@@ -1,17 +1,12 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import RegistrationScreen from "./Screens/RegistrationScreen"
 import LoginScreen from './Screens/LoginScreen';
 
-const Stack = createBottomTabNavigator();
-
-// const Stack = createStackNavigator();
-
+const Stack = createStackNavigator();
 
 export default function App() {
-
   return (
     <>
       <NavigationContainer>

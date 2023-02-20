@@ -17,6 +17,7 @@ import { useState, useEffect } from "react";
 import * as Font from "expo-font";
 // import { AppLoading } from "expo";
 import AppLoading from 'expo-app-loading';
+
 import { globalStyles } from '../config/globalStyles';
 
 const initialState = {
@@ -26,7 +27,6 @@ const initialState = {
 
 const loadApplication = async() => {
   await Font.loadAsync({
-    // 'DMMono-Regular': require('./assets/fonts/DMMono-Regular.ttf')
     'DMMono-Regular': require('../assets/fonts/DMMono-Regular.ttf')
   })
 }
@@ -109,6 +109,7 @@ export default function RegistrationScreen({ navigation }) {
                   setState((prevState) => ({ ...prevState, password: value }))
                 }
               />
+            
             </View>
             <TouchableOpacity activeOpacity={0.7} style={ globalStyles.button} 
             onPress={() => setIsShowKeyboard(false)}
