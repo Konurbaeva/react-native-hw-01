@@ -73,8 +73,14 @@ const [dimensions, setDimensions] = useState(Dimensions.get("window").width-20*2
         style={styles.image}
         source={require("./assets/PhotoBG.png")}>
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-
-         <Image  style={styles.imageWhite} source={require("./assets/BG.png")}/>
+          <Image  style={styles.imageRectangle} source={require("./assets/Rectangle.png")}/>
+         <Image width={200} height={200} style={styles.imageWhite} source={require("./assets/BG.png")}/>
+         <Image
+         style={styles.imagePlusIcon} 
+        source={{
+          uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
+        }}
+      />
         <View style={{...styles.form, marginBottom: isShowKeyboard? 20 : 100, width: dimensions}}>
           <View style={styles.header}> 
           <Text style={styles.headerTitle}>Регистрация</Text>
@@ -135,6 +141,15 @@ const styles = StyleSheet.create({
    position: 'absolute',
    justifyContent: "center"
   },
+  imageRectangle: {
+    position: 'absolute',
+    borderRadius: 6,
+    borderColor: "#f0f8ff"
+  },
+  imagePlusIcon: {
+    width: 66,
+    height: 58
+  },
   input: {
     borderWidth: 1,
     borderColor: "#f0f8ff",
@@ -159,6 +174,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     justifyContent: "center",
     alignItems: "center",
+    background: '#FF6C00',
     ...Platform.select({
       ios: {
         backgroundColor: "transparent",
