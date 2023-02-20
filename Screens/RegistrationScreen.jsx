@@ -10,13 +10,13 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Dimensions,
-  Image
+  Image,
+  Button
 } from "react-native";
 import { useState, useEffect } from "react";
 import * as Font from "expo-font";
 // import { AppLoading } from "expo";
 import AppLoading from 'expo-app-loading';
-
 import { globalStyles } from '../config/globalStyles';
 
 const initialState = {
@@ -31,7 +31,7 @@ const loadApplication = async() => {
   })
 }
 
-export default function RegistrationScreen() {
+export default function RegistrationScreen({ navigation }) {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false)
   const [state, setState] = useState(initialState)
   const [isReady, setIsReady] = useState(false)
@@ -114,11 +114,17 @@ export default function RegistrationScreen() {
             onPress={() => setIsShowKeyboard(false)}
             >
               <Text style={ globalStyles.buttonTitle}>Зарегистрироваться</Text>
+             
             </TouchableOpacity>
+
+            <Button
+        title="Уже есть аккаунт? Войти"
+        onPress={() => navigation.navigate('Login')}
+      />
           </View>
           </KeyboardAvoidingView>
         </ImageBackground>
-       
+      
       </View>
       </TouchableWithoutFeedback>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     View,
+    Button,
     ImageBackground,
     TextInput,
     Text,
@@ -15,10 +16,16 @@ import {
 
   import { globalStyles } from '../config/globalStyles';
 
-  export default function LoginScreen() {
+
+  export default function LoginScreen({navigation}) {
     return (
         <View style={ globalStyles.container}>    
          <Text> Login Screen</Text>
+         <Button
+        title="Нет аккаунта? Зарегистрироваться"
+        onPress={() => navigation.navigate('Register')}
+      
+      />
         </View>
       );
   }
