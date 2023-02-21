@@ -24,10 +24,11 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 50,
   },
   imageRectangle: {
-    width: MAX_WIDTH,
-    height: MAX_HEIGHT,
+    // width: MAX_WIDTH,
+    // height: MAX_HEIGHT,
     position: 'absolute',
     borderRadius: 6,
 
