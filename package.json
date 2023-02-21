@@ -22,6 +22,7 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
+    "react-native-image-placeholder": "^1.0.14",
     "react-native-web": "~0.18.9",
     "react-navigation": "^4.4.4",
     "react-router-dom": "^6.8.1"

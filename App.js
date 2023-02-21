@@ -17,7 +17,8 @@ export default function App() {
 }
 
 export const AppNavigator = () => (
-  <Stack.Navigator initialRouteName="Login">
+  // <Stack.Navigator initialRouteName="Login">
+  <Stack.Navigator>
     <Stack.Screen name="Register" component={RegistrationScreen}/>
      <Stack.Screen name="Login" component={LoginScreen} />
   </Stack.Navigator>

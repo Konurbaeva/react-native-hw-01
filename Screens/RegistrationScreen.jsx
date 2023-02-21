@@ -20,6 +20,8 @@ import AppLoading from 'expo-app-loading';
 
 import { globalStyles } from '../config/globalStyles';
 
+
+
 const initialState = {
   email: '',
   password: '',
@@ -73,15 +75,16 @@ export default function RegistrationScreen({ navigation }) {
       <View style={globalStyles.container}>
         <ImageBackground style={globalStyles.image} source={require('../assets/PhotoBG.png')}>
           <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-            <Image
-              style={globalStyles.imageRectangle}
-              source={require('../assets/Rectangle.png')}
-            />
+          
             <Image
               width={200}
               height={200}
               style={globalStyles.imageWhite}
               source={require('../assets/BG.png')}
+            />
+              <Image
+              style={globalStyles.imageRectangle}
+              source={require('../assets/Rectangle.png')}
             />
             <Image
               style={globalStyles.imagePlusIcon}

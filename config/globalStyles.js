@@ -26,18 +26,27 @@ export const globalStyles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 30,
   },
-  imageRectangle: {
-    // width: MAX_WIDTH,
-    // height: MAX_HEIGHT,
-    position: 'absolute',
-    borderRadius: 6,
+  // imageRectangle: {
+  //   // width: MAX_WIDTH,
+  //   // height: MAX_HEIGHT,
+  //   position: 'absolute',
+  //   borderRadius: 6,
 
-    borderColor: colors.secondary,
-  },
-  // imagePlusIcon: {
-  //   width: 36,
-  //   height: 28
+  //   // borderColor: colors.secondary,
+  //   borderColor: "red",
   // },
+  imageRectangle: {
+    position: 'absolute',
+  
+    
+  },
+  imagePlusIcon: {
+    width: 36,
+    height: 28,
+    alignItems:"center",
+   // flexDirection: 'column',
+   flexDirection: "row"
+  },
   input: {
     borderWidth: 1,
     borderRadius: 6,
