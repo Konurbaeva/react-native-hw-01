@@ -19,6 +19,7 @@ import * as Font from "expo-font";
 import AppLoading from 'expo-app-loading';
 
 import { globalStyles } from '../config/globalStyles';
+import colors from '../config/colors';
 
 const initialState = {
   email: '',
@@ -36,7 +37,11 @@ export default function RegistrationScreen({ navigation }) {
   const [state, setState] = useState(initialState)
   const [isReady, setIsReady] = useState(false)
   
+
+  
   const [dimensions, setDimensions] = useState(Dimensions.get("window").width-20*2)
+
+
   
    const keyboardHide = () => {
     setIsShowKeyboard(false)
@@ -44,7 +49,7 @@ export default function RegistrationScreen({ navigation }) {
     console.log(state)
     setState(initialState)
    }
-  
+
    useEffect(() => {
    const onChange= () => {
     const width = Dimensions.get("window").width
@@ -94,6 +99,7 @@ export default function RegistrationScreen({ navigation }) {
                onChangeText={(value) =>
                 setState((prevState) => ({ ...prevState, email: value }))
               }
+
               />
             </View>
             <View style={{ marginTop: 20 }}>

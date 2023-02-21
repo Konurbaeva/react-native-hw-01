@@ -34,9 +34,9 @@ import {
     },
     input: {
       borderWidth: 1,
+      borderRadius: 10,
       borderColor: colors.secondary,
       height: 40,
-      borderRadius: 6,
       marginHorizontal: 40,
       color: colors.secondary,
     },
