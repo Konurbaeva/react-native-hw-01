@@ -37,11 +37,9 @@ export default function RegistrationScreen({ navigation }) {
   const [state, setState] = useState(initialState)
   const [isReady, setIsReady] = useState(false)
   
-
-  
-  const [dimensions, setDimensions] = useState(Dimensions.get("window").width-20*2)
-
-
+  const [dimensions, setDimensions] = useState(
+    Dimensions.get("window").width - 20 * 2
+  );
   
    const keyboardHide = () => {
     setIsShowKeyboard(false)
@@ -51,10 +49,16 @@ export default function RegistrationScreen({ navigation }) {
    }
 
    useEffect(() => {
-   const onChange= () => {
-    const width = Dimensions.get("window").width
-    setDimensions(width)
-   }
+  //  const onChange= () => {
+  //   const width = Dimensions.get("window").width
+  //   setDimensions(width)
+  //  }
+
+   const onChange = () => {
+    const width = Dimensions.get("window").width - 20 * 2;
+
+    setDimensions(width);
+  };
    dimensionsHandler = Dimensions.addEventListener('change', onChange)
   
   return ()=> dimensionsHandler.remove()
@@ -85,7 +89,7 @@ export default function RegistrationScreen({ navigation }) {
             uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
           }}
         />
-          <View style={{... globalStyles.form, marginBottom: isShowKeyboard? 20 : 100, width: dimensions}}>
+          <View style={{... globalStyles.form, marginBottom: isShowKeyboard? 20 : 150, width: dimensions}}>
             <View style={ globalStyles.header}> 
             <Text style={ globalStyles.headerTitle}>Регистрация</Text>
             </View>
@@ -93,12 +97,16 @@ export default function RegistrationScreen({ navigation }) {
               <Text style={ globalStyles.inputTitle} 
               onFocus={() => setIsShowKeyboard(true)}
               >Email address:</Text>
-              <TextInput style={ globalStyles.input} textAlign={"center"} 
+              <TextInput 
+             style={ globalStyles.input}
+             // style={[globalStyles.input, isActive && { backgroundColor: 'purple' }]}
+               textAlign={"center"} 
                placeholder="Адрес электронной почты"
                value={state.email}
                onChangeText={(value) =>
                 setState((prevState) => ({ ...prevState, email: value }))
               }
+
 
               />
             </View>

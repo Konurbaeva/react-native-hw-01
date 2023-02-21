@@ -11,38 +11,33 @@ import {
       backgroundColor: colors.primary,
     },
     image: {
-      // // justifyContent: "flex-end",
-      // justifyContent: "center",
       flex: 1,
       resizeMode: "cover",
-      justifyContent: "flex-end",
+     justifyContent: "flex-end",
       alignItems: "center",
     },
-    imageWhite: {
-     flex: 1,
-     position: 'absolute',
-     justifyContent: "center"
-    },
-    imageRectangle: {
-      position: 'absolute',
-      borderRadius: 6,
-      borderColor: colors.secondary
-    },
-    imagePlusIcon: {
-      width: 66,
-      height: 58
-    },
+    // imageWhite: {
+    //  flex: 1,
+    //  position: 'absolute',
+    //  justifyContent: "center"
+    // },
+    // imageRectangle: {
+    //   position: 'absolute',
+    //   borderRadius: 6,
+    //   borderColor: colors.secondary
+    // },
+    // imagePlusIcon: {
+    //   width: 36,
+    //   height: 28
+    // },
     input: {
       borderWidth: 1,
-      borderRadius: 10,
+      borderRadius: 6,
       borderColor: colors.secondary,
       height: 40,
-      marginHorizontal: 40,
       color: colors.secondary,
     },
     form: {
-     // marginHorizontal: 40,
-      marginBottom:100
     },
     inputTitle: {
       color: colors.secondary,
