@@ -1,6 +1,4 @@
 import { StyleSheet, Dimensions } from 'react-native';
-
-// import colors from "../config/colors"
 import colors from './colors';
 
 const MAX_WIDTH = Dimensions.get('window').width;
@@ -44,7 +42,7 @@ export const globalStyles = StyleSheet.create({
     borderRadius: 6,
     height: 40,
     color: colors.black,
-    borderColor: colors.grey
+    borderColor: colors.grey,
   },
   form: {},
   inputTitle: {
@@ -88,7 +86,7 @@ export const globalStyles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 30,
-   color: colors.black,
+    color: colors.black,
     fontFamily: 'DMMono-Regular',
   },
   iconContainer: {

@@ -16,11 +16,9 @@ import {
 import { useState, useEffect } from 'react';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
-// import { AppLoading } from "expo";
 import AppLoading from 'expo-app-loading';
 
 import { globalStyles } from '../config/globalStyles';
-import colors from '../config/colors';
 
 const initialState = {
   email: '',
@@ -51,11 +49,6 @@ export default function RegistrationScreen({ navigation }) {
   const toggleShowPassword = () => setShowPassword(!showPassword);
 
   useEffect(() => {
-    //  const onChange= () => {
-    //   const width = Dimensions.get("window").width
-    //   setDimensions(width)
-    //  }
-
     const onChange = () => {
       const width = Dimensions.get('window').width - 20 * 2;
 
@@ -112,7 +105,6 @@ export default function RegistrationScreen({ navigation }) {
                 </Text>
                 <TextInput
                   style={globalStyles.input}
-                  // style={[globalStyles.input, isActive && { backgroundColor: 'purple' }]}
                   textAlign={'center'}
                   placeholder="Адрес электронной почты"
                   value={state.email}
