@@ -32,6 +32,7 @@ export const globalStyles = StyleSheet.create({
     height: MAX_HEIGHT,
     position: 'absolute',
     borderRadius: 6,
+
     borderColor: colors.secondary,
   },
   // imagePlusIcon: {
@@ -41,13 +42,13 @@ export const globalStyles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderRadius: 6,
-    borderColor: colors.secondary,
     height: 40,
-    color: colors.secondary,
+    color: colors.black,
+    borderColor: colors.grey
   },
   form: {},
   inputTitle: {
-    color: colors.secondary,
+    color: colors.black,
     marginBottom: 10,
     fontSize: 18,
   },
@@ -81,13 +82,13 @@ export const globalStyles = StyleSheet.create({
   },
   header: {
     fontSize: 25,
-    color: '#212121',
+    color: colors.black,
     alignItems: 'center',
     marginBottom: 150,
   },
   headerTitle: {
     fontSize: 30,
-    color: colors.secondary,
+   color: colors.black,
     fontFamily: 'DMMono-Regular',
   },
 });
