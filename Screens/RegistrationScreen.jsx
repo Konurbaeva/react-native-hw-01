@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import { useState, useEffect } from 'react';
 import * as Font from 'expo-font';
+import { Ionicons } from '@expo/vector-icons';
 // import { AppLoading } from "expo";
 import AppLoading from 'expo-app-loading';
 
@@ -36,6 +37,7 @@ export default function RegistrationScreen({ navigation }) {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
   const [isReady, setIsReady] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const [dimensions, setDimensions] = useState(Dimensions.get('window').width - 20 * 2);
 
@@ -45,6 +47,8 @@ export default function RegistrationScreen({ navigation }) {
     console.log(state);
     setState(initialState);
   };
+
+  const toggleShowPassword = () => setShowPassword(!showPassword);
 
   useEffect(() => {
     //  const onChange= () => {
@@ -120,12 +124,18 @@ export default function RegistrationScreen({ navigation }) {
                 <TextInput
                   style={globalStyles.input}
                   textAlign={'center'}
-                  secureTextEntry={true}
+                  // secureTextEntry={true}
+                  secureTextEntry={!showPassword}
                   onFocus={() => setIsShowKeyboard(true)}
                   placeholder="Пароль"
                   value={state.password}
                   onChangeText={value => setState(prevState => ({ ...prevState, password: value }))}
                 />
+                <TouchableOpacity onPress={toggleShowPassword} 
+               // style={styles.iconContainer}
+                >
+                  <Ionicons name={showPassword ? 'eye-off' : 'eye'} size={24} color="gray" />
+                </TouchableOpacity>
               </View>
               <TouchableOpacity
                 activeOpacity={0.7}
