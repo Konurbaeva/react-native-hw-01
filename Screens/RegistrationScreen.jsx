@@ -124,16 +124,13 @@ export default function RegistrationScreen({ navigation }) {
                 <TextInput
                   style={globalStyles.input}
                   textAlign={'center'}
-                  // secureTextEntry={true}
                   secureTextEntry={!showPassword}
                   onFocus={() => setIsShowKeyboard(true)}
                   placeholder="Пароль"
                   value={state.password}
                   onChangeText={value => setState(prevState => ({ ...prevState, password: value }))}
                 />
-                <TouchableOpacity onPress={toggleShowPassword} 
-               // style={styles.iconContainer}
-                >
+                <TouchableOpacity onPress={toggleShowPassword} style={globalStyles.iconContainer}>
                   <Ionicons name={showPassword ? 'eye-off' : 'eye'} size={24} color="gray" />
                 </TouchableOpacity>
               </View>

@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import { useState, useEffect } from 'react';
 import * as Font from 'expo-font';
+import { Ionicons } from '@expo/vector-icons';
 // import { AppLoading } from "expo";
 import AppLoading from 'expo-app-loading';
 
@@ -31,25 +32,15 @@ const loadApplication = async () => {
   });
 };
 
-//   export default function LoginScreen({navigation}) {
-//     return (
-//         <View style={ globalStyles.container}>
-//          <Text> Login Screen</Text>
-//          <Button
-//         title="Нет аккаунта? Зарегистрироваться"
-//         onPress={() => navigation.navigate('Register')}
-
-//       />
-//         </View>
-//       );
-//   }
-
 export default function LoginScreen({ navigation }) {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
   const [isReady, setIsReady] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const [dimensions, setDimensions] = useState(Dimensions.get('window').width - 20 * 2);
+
+  const toggleShowPassword = () => setShowPassword(!showPassword);
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
@@ -125,12 +116,15 @@ export default function LoginScreen({ navigation }) {
                 <TextInput
                   style={globalStyles.input}
                   textAlign={'center'}
-                  secureTextEntry={true}
+                  secureTextEntry={!showPassword}
                   onFocus={() => setIsShowKeyboard(true)}
                   placeholder="Пароль"
                   value={state.password}
                   onChangeText={value => setState(prevState => ({ ...prevState, password: value }))}
                 />
+                <TouchableOpacity onPress={toggleShowPassword} style={globalStyles.iconContainer}>
+                  <Ionicons name={showPassword ? 'eye-off' : 'eye'} size={24} color="gray" />
+                </TouchableOpacity>
               </View>
               <TouchableOpacity
                 activeOpacity={0.7}
@@ -142,7 +136,6 @@ export default function LoginScreen({ navigation }) {
 
               <Button
                 title="Нет аккаунта? Зарегистрироваться"
-                //onPress={() => navigation.navigate('Login')}
                 onPress={() => navigation.navigate('Register')}
               />
             </View>

@@ -91,4 +91,7 @@ export const globalStyles = StyleSheet.create({
    color: colors.black,
     fontFamily: 'DMMono-Regular',
   },
+  iconContainer: {
+    padding: 10,
+  },
 });
