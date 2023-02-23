@@ -4,6 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import RegistrationScreen from "./Screens/RegistrationScreen"
 import LoginScreen from './Screens/LoginScreen';
 
+import 'expo-dev-menu';
+
 const Stack = createStackNavigator();
 
 export default function App() {
