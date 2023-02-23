@@ -14,7 +14,6 @@ import {
   Button,
 } from 'react-native';
 import { useState, useEffect } from 'react';
-import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import AppLoading from 'expo-app-loading';
 
@@ -27,16 +26,9 @@ const initialState = {
   password: '',
 };
 
-const loadApplication = async () => {
-  await Font.loadAsync({
-    'DMMono-Regular': require('../assets/fonts/DMMono-Regular.ttf'),
-  });
-};
-
 export default function RegistrationScreen({ navigation }) {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
-  const [isReady, setIsReady] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const [dimensions, setDimensions] = useState(Dimensions.get('window').width - 20 * 2);
@@ -61,15 +53,7 @@ export default function RegistrationScreen({ navigation }) {
     return () => dimensionsHandler.remove();
   }, []);
 
-  if (!isReady) {
-    return (
-      <AppLoading
-        startAsync={loadApplication}
-        onFinish={() => setIsReady(true)}
-        onError={console.warn}
-      />
-    );
-  }
+
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
       <View style={globalStyles.container}>
