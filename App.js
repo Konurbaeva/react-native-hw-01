@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import RegistrationScreen from "./Screens/RegistrationScreen"
 import LoginScreen from './Screens/LoginScreen';
 import * as Font from 'expo-font';
+import AppLoading from 'expo-app-loading';
 
 import { useState } from 'react';
 
@@ -12,7 +13,7 @@ import 'expo-dev-menu';
 
 const loadApplication = async () => {
   await Font.loadAsync({
-    'DMMono-Regular': require('../assets/fonts/DMMono-Regular.ttf'),
+    'DMMono-Regular': require('./assets/fonts/DMMono-Regular.ttf'),
   });
 };
 
