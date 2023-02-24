@@ -38,7 +38,7 @@ export const useRoute = isAuth => {
       <MainTab.Screen
         options={{
           tabBarIcon: ({ focused, size, color }) => (
-            <MaterialIcons name="post-add" size={24} color="black" />
+            <MaterialIcons name="post-add" size={size} color={color} />
           ),
         }}
         name="Posts"
