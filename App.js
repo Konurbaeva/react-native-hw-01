@@ -10,6 +10,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useState } from 'react';
 
 import 'expo-dev-menu';
+import PostsScreen from './Screens/mainScreen/PostsScreen';
+import CreatePostsScreen from './Screens/mainScreen/CreatePostsScreen';
+import ProfileScreen from './Screens/mainScreen/ProfileScreen';
 
 
 const loadApplication = async () => {
@@ -43,12 +46,20 @@ export default function App() {
   );
 }
 
+// export const AppNavigator = () => (
+//   // <Stack.Navigator initialRouteName="Login">
+//   <Stack.Navigator>
+//     <Stack.Screen name="Register" component={RegistrationScreen}  options={{
+//             headerShown: false,
+//           }}/>
+//      <Stack.Screen name="Login" component={LoginScreen} />
+//   </Stack.Navigator>
+// );
+
 export const AppNavigator = () => (
-  // <Stack.Navigator initialRouteName="Login">
-  <Stack.Navigator>
-    <Stack.Screen name="Register" component={RegistrationScreen}  options={{
-            headerShown: false,
-          }}/>
-     <Stack.Screen name="Login" component={LoginScreen} />
-  </Stack.Navigator>
+  <MainTab.Navigator>
+        <MainTab.Screen name="Posts" component={PostsScreen} />
+        <MainTab.Screen name="Create" component={CreatePostsScreen} />
+        <MainTab.Screen name="Profile" component={ProfileScreen} />
+      </MainTab.Navigator>
 );
