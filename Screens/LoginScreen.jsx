@@ -15,6 +15,8 @@ import {
 } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import AppLoading from 'expo-app-loading';
 
 import { globalStyles } from '../config/globalStyles';

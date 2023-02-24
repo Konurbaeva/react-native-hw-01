@@ -5,6 +5,7 @@ import RegistrationScreen from "./Screens/RegistrationScreen"
 import LoginScreen from './Screens/LoginScreen';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { useState } from 'react';
 
@@ -18,6 +19,7 @@ const loadApplication = async () => {
 };
 
 const Stack = createStackNavigator();
+const MainTab = createBottomTabNavigator();
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
