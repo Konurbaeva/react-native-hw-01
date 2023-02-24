@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons,  AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import RegistrationScreen from './Screens/RegistrationScreen';
 import LoginScreen from './Screens/LoginScreen';
@@ -44,8 +44,18 @@ export const useRoute = isAuth => {
         name="Posts"
         component={PostsScreen}
       />
-      <MainTab.Screen name="Create" component={CreatePostsScreen} />
-      <MainTab.Screen name="Profile" component={ProfileScreen} />
+      <MainTab.Screen 
+      options={{
+        tabBarIcon: ({focused, size, color}) => (
+            <AntDesign name="pluscircle" size={size} color={color} />
+        )
+      }}
+      name="Create" component={CreatePostsScreen} />
+      <MainTab.Screen options={{
+        tabBarIcon: ({focused, size, color}) => (
+            <MaterialCommunityIcons name="face-man-profile" size={size} color={color} />
+        )
+      }} name="Profile" component={ProfileScreen} />
     </MainTab.Navigator>
   );
 };
