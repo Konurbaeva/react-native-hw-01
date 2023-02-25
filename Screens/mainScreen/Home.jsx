@@ -1,16 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import PostsScreen from './PostsScreen';
 
-const Home = ({ navigation }) => {
+const MainTab = createBottomTabNavigator();
+
+function Home() {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity activeOpacity={0.7}>
-        <Button title="Go to Posts" onPress={() => navigation.navigate('PostsScreen')} />
-
-      </TouchableOpacity>
-    </View>
+        <MainTab.Navigator>
+        <MainTab.Screen name="Posts" component={PostsScreen}></MainTab.Screen>
+        </MainTab.Navigator>
   );
-};
+}
+
 
 const styles = StyleSheet.create({
   container: {
