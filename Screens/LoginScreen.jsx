@@ -115,7 +115,8 @@ export default function LoginScreen({ navigation }) {
               <TouchableOpacity
                 activeOpacity={0.7}
                 style={globalStyles.button}
-                onPress={() => setIsShowKeyboard(false)}
+               // onPress={() => setIsShowKeyboard(false)}
+               onPress={() => navigation.navigate('Home')}
               >
                 <Text style={globalStyles.buttonTitle}>Войти</Text>
               </TouchableOpacity>

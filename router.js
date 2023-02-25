@@ -10,6 +10,7 @@ import LoginScreen from './Screens/LoginScreen';
 import PostsScreen from './Screens/mainScreen/PostsScreen';
 import CreatePostsScreen from './Screens/mainScreen/CreatePostsScreen';
 import ProfileScreen from './Screens/mainScreen/ProfileScreen';
+import Home from './Screens/mainScreen/Home';
 
 const AuthStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
@@ -31,6 +32,13 @@ export const useRoute = isAuth => {
           }}
           name="Register"
           component={RegistrationScreen}
+        />
+         <AuthStack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name="Home"
+          component={Home}
         />
       </AuthStack.Navigator>
     );
