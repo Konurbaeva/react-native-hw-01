@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import CreatePostsScreen from './CreatePostsScreen';
 import PostsScreen from './PostsScreen';
 
 const MainTab = createBottomTabNavigator();
