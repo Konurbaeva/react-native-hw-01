@@ -15,30 +15,6 @@ const loadApplication = async () => {
   });
 };
 
-// const useRoute = isAuth => {
-//   if (!isAuth) {
-//     return (
-//       <AuthStack.Navigator>
-//         <AuthStack.Screen
-//           name="Register"
-//           component={RegistrationScreen}
-//           options={{
-//             headerShown: false,
-//           }}
-//         />
-//         <AuthStack.Screen name="Login" component={LoginScreen} />
-//       </AuthStack.Navigator>
-//     );
-//   }
-//   return (
-//     <>
-//       <MainTab.Screen name="Posts" component={PostsScreen} />
-//       <MainTab.Screen name="Create" component={CreatePostsScreen} />
-//       <MainTab.Screen name="Profile" component={ProfileScreen} />
-//     </>
-//   );
-// };
-
 export default function App() {
   const [isReady, setIsReady] = useState(false);
   // const routing = useRoute(true);
