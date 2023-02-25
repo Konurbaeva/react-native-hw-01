@@ -1,15 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
 
-// const Home = () => {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Home</Text>
-//     </View>
-//   );
-// };
-
-//
 const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
