@@ -11,6 +11,16 @@ export const globalStyles = StyleSheet.create({
     width: MAX_WIDTH,
     height: MAX_HEIGHT,
   },
+  input: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    padding: 10,
+    marginBottom: 10,
+  },
+  error: {
+    color: 'red',
+    marginBottom: 10,
+  },
   image: {
     flex: 1,
     resizeMode: 'cover',

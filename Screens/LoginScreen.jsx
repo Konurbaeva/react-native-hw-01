@@ -26,16 +26,40 @@ const initialState = {
   password: '',
 };
 
-
 export default function LoginScreen({ navigation }) {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
   const [isReady, setIsReady] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [isValid, setIsValid] = useState(false);
+  const [error, setError] = useState(null);
 
   const [dimensions, setDimensions] = useState(Dimensions.get('window').width - 20 * 2);
 
   const toggleShowPassword = () => setShowPassword(!showPassword);
+
+  const handleEmailChange = inputText => {
+    setEmail(inputText);
+
+    // Regular expression for email validation
+    const regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    setIsValid(regex.test(inputText));
+
+    // Set error message if email is invalid
+    if (!regex.test(inputText)) {
+      setError('Please enter a valid email address.');
+    } else {
+      setError(null);
+    }
+  };
+
+  const handleSubmit = () => {
+    console.log('Submitted');
+    setEmail('');
+    setIsValid(false);
+    setError(null);
+  };
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
@@ -93,8 +117,10 @@ export default function LoginScreen({ navigation }) {
                   style={globalStyles.input}
                   textAlign={'center'}
                   placeholder="Адрес электронной почты"
-                  value={state.email}
-                  onChangeText={value => setState(prevState => ({ ...prevState, email: value }))}
+                  //  value={state.email}
+                  //  onChangeText={value => setState(prevState => ({ ...prevState, email: value }))}
+                  value={email}
+                  onChangeText={handleEmailChange}
                 />
               </View>
               <View style={{ marginTop: 20 }}>
@@ -115,10 +141,13 @@ export default function LoginScreen({ navigation }) {
               <TouchableOpacity
                 activeOpacity={0.7}
                 style={globalStyles.button}
-               // onPress={() => setIsShowKeyboard(false)}
-               onPress={() => navigation.navigate('Home')}
+                onPress={() => setIsShowKeyboard(false)}
+                //  onPress={() => navigation.navigate('Home')}
               >
-                <Text style={globalStyles.buttonTitle}>Войти</Text>
+                {/* <Text style={globalStyles.buttonTitle}>Войти</Text> */}
+
+                {error && <Text style={globalStyles.error}>{error}</Text>}
+                <Button title="Submit" onPress={handleSubmit} disabled={!isValid} />
               </TouchableOpacity>
 
               <Button
