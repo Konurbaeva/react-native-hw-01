@@ -11,11 +11,13 @@ export const globalStyles = StyleSheet.create({
     width: MAX_WIDTH,
     height: MAX_HEIGHT,
   },
+
   input: {
     borderWidth: 1,
-    borderColor: 'gray',
-    padding: 10,
-    marginBottom: 10,
+    borderRadius: 6,
+    height: 40,
+    color: colors.black,
+    borderColor: colors.grey,
   },
   error: {
     color: 'red',
@@ -57,13 +59,7 @@ export const globalStyles = StyleSheet.create({
    // flexDirection: 'column',
    flexDirection: "row"
   },
-  input: {
-    borderWidth: 1,
-    borderRadius: 6,
-    height: 40,
-    color: colors.black,
-    borderColor: colors.grey,
-  },
+
   form: {},
   inputTitle: {
     color: colors.black,
