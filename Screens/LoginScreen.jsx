@@ -147,7 +147,7 @@ export default function LoginScreen({ navigation }) {
                 {/* <Text style={globalStyles.buttonTitle}>Войти</Text> */}
 
                 {error && <Text style={globalStyles.error}>{error}</Text>}
-                <Button title="Submit" onPress={handleSubmit} disabled={!isValid} />
+                <Button title="Войти" onPress={handleSubmit} disabled={!isValid}/>
               </TouchableOpacity>
 
               <Button

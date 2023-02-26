@@ -16,9 +16,9 @@ import Home from './Screens/mainScreen/Home';
 const AuthStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
 
-export const useRoute = isAuth => {
+export const useRoute = isSignedIn => {
 
-  if (!isAuth) {
+  if (!isSignedIn) {
     return (
       <AuthStack.Navigator>
         <AuthStack.Screen
