@@ -16,6 +16,7 @@
     "@react-navigation/bottom-tabs": "^6.5.5",
     "@react-navigation/native": "^6.1.4",
     "@react-navigation/stack": "^6.3.14",
+    "@reduxjs/toolkit": "^1.9.3",
     "expo": "~47.0.12",
     "expo-app-loading": "~2.1.1",
     "expo-dev-menu": "^2.0.2",
@@ -33,6 +34,7 @@
     "react-native-screens": "~3.18.0",
     "react-native-web": "~0.18.9",
     "react-navigation": "^4.4.4",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1"
   },
   "devDependencies": {

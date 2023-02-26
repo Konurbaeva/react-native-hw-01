@@ -17,7 +17,14 @@ import { useState, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+// import { loginUser } from '../store/slices/authSlice';
+
+import { loginUser } from '../redux/store/slices/authSlice';
+
 import AppLoading from 'expo-app-loading';
+
 
 import { globalStyles } from '../config/globalStyles';
 
@@ -33,7 +40,11 @@ export default function LoginScreen({ navigation }) {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [isValid, setIsValid] = useState(false);
-  const [error, setError] = useState(null);
+ //  const [error, setError] = useState(null);
+
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.auth.isLoading);
+  const error = useSelector((state) => state.auth.error);
 
   const [dimensions, setDimensions] = useState(Dimensions.get('window').width - 20 * 2);
 
@@ -52,6 +63,15 @@ export default function LoginScreen({ navigation }) {
     } else {
       setError(null);
     }
+  };
+
+  const [credentials, setCredentials] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleLogin = () => {
+    dispatch(loginUser(credentials));
   };
 
   const handleSubmit = () => {
@@ -119,8 +139,10 @@ export default function LoginScreen({ navigation }) {
                   placeholder="Адрес электронной почты"
                   //  value={state.email}
                   //  onChangeText={value => setState(prevState => ({ ...prevState, email: value }))}
-                  value={email}
-                  onChangeText={handleEmailChange}
+                  // value={email}
+                  // onChangeText={handleEmailChange}
+                  value={credentials.email}
+                  onChangeText={(text) => setCredentials({ ...credentials, email: text })}
                 />
               </View>
               <View style={{ marginTop: 20 }}>
@@ -147,7 +169,10 @@ export default function LoginScreen({ navigation }) {
                 {/* <Text style={globalStyles.buttonTitle}>Войти</Text> */}
 
                 {error && <Text style={globalStyles.error}>{error}</Text>}
-                <Button title="Войти" onPress={handleSubmit} disabled={!isValid}/>
+                <Button title="Войти" 
+                //onPress={handleSubmit}
+                onPress={handleLogin}
+                disabled={!isValid}/>
               </TouchableOpacity>
 
               <Button
@@ -161,3 +186,9 @@ export default function LoginScreen({ navigation }) {
     </TouchableWithoutFeedback>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    count: state.count,
+  };
+};
