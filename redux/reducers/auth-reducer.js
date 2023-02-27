@@ -47,7 +47,8 @@ const initialState = {
   isLoading: false,
   error: null,
 };
-const authReducer = (state = initialState, action) => {
+
+export const authReducer = (state = initialState, action) => {
     switch (action.type) {
       case "LOGIN":
          return {
