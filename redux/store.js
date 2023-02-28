@@ -1,5 +1,10 @@
-// const store = createStore(loggeduser);
+import { configureStore } from '@reduxjs/toolkit';
+import loginReducer from './reducers/loginReducer';
 
-import { authReducer } from "./reducers/auth-reducer";
+const store = configureStore({
+  reducer: {
+    login: loginReducer,
+  },
+});
 
-export const store = createStore(authReducer);
+export default store;
