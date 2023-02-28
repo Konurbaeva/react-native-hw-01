@@ -58,8 +58,15 @@ export default function LoginScreen({ navigation }) {
 
   const dispatch = useDispatch();
 
-  const loading = useSelector(state => state.login.loading);
-  const error = useSelector(state => state.login.error);
+
+  // isLoggedIn: false,
+  // isLoggingIn: false,
+  // error: null,
+  // const loading = useSelector(state => state.login.loading);
+  // const error = useSelector(state => state.login.error);
+
+  const loading = useSelector(state => state.isLoggedIn);
+  const error = useSelector(state => state.error);
 
   const handleLogin = useCallback(() => {
     dispatch(loginRequest());
