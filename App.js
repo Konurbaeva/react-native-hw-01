@@ -36,13 +36,23 @@ export default function App() {
     );
   }
 
+  // return (
+  //   <>
+  //  <Provider store={store}>
+  //  <NavigationContainer>
+  //      {routing}
+  //     </NavigationContainer>
+  //   </Provider>
+  //   </>
+  // );
   return (
     <>
-   <Provider store={store}>
+  
    <NavigationContainer>
+   <Provider store={store}>
        {routing}
+       </Provider>
       </NavigationContainer>
-    </Provider>
     </>
   );
 }

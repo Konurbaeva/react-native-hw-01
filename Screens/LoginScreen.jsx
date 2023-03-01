@@ -1,4 +1,5 @@
-import React, { useCallback } from 'react';
+import React, {  useState, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector, connect } from 'react-redux';
 import {
   View,
   ImageBackground,
@@ -13,33 +14,11 @@ import {
   Image,
   Button,
 } from 'react-native';
-import { useState, useEffect } from 'react';
+
 import { Ionicons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-import { connect } from 'react-redux';
-
-import { useDispatch, useSelector } from 'react-redux';
-// import { loginRequest, loginSuccess, loginFailure } from './actions/loginActions';
 import { loginRequest, loginSuccess, loginFailure } from '../redux/actions/loginActions';
 
 import { globalStyles } from '../config/globalStyles';
-
-// const mapStateToProps = state => ({
-//   // Define the props you want to map from state to props
-//   loading: state.login.loading,
-//   error: state.login.error,
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   // Define the action creators you want to map to props
-//   loginRequest: () => dispatch(loginRequest()),
-//   loginSuccess: () => dispatch(loginSuccess()),
-//   loginFailure: error => dispatch(loginFailure(error)),
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
-// connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
 
 const initialState = {
   email: '',
@@ -53,6 +32,7 @@ export default function LoginScreen({ navigation }) {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [isValid, setIsValid] = useState(false);
+  const [error, setError]  = useState('');
 
   const [dimensions, setDimensions] = useState(Dimensions.get('window').width - 20 * 2);
 
@@ -65,8 +45,8 @@ export default function LoginScreen({ navigation }) {
   // const loading = useSelector(state => state.login.loading);
   // const error = useSelector(state => state.login.error);
 
-  const loading = useSelector(state => state.isLoggedIn);
-  const error = useSelector(state => state.error);
+  // const loading = useSelector(state => state.isLoggedIn);
+  // const error = useSelector(state => state.error);
 
   const handleLogin = useCallback(() => {
     dispatch(loginRequest());
