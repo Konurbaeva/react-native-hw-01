@@ -39,7 +39,13 @@ export default function LoginScreen({ navigation }) {
   const dispatch = useDispatch();
 
   const loggedIn = useSelector(state => state.isLoggedIn);
+  const loggedInEmail = useSelector(state => state.email);
+  const loggedInPassword = useSelector(state => state.password);
   const error = useSelector(state => state.error);
+
+  console.log('loggedInEmail: ', loggedInEmail)
+  console.log('loggedInPassword: ', loggedInPassword)
+
 
   const handleLogin = useCallback(() => {
     dispatch(loginRequest());
