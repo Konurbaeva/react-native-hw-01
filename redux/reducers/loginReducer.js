@@ -6,8 +6,37 @@ const initialState = {
   error: null,
 };
 
-// export default function loginReducer(state = initialState, action) {
-//   switch (action.type) {
+export default function loginReducer(state = initialState, action) {
+  switch (action.type) {
+    case LOGIN_REQUEST:
+      return {
+        ...state,
+        isLoggingIn: true,
+        error: null,
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLoggedIn: true,
+        isLoggingIn: false,
+        error: null,
+      };
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        isLoggedIn: false,
+        isLoggingIn: false,
+        error: action.error,
+      };
+    default:
+      return state;
+  }
+}
+
+// export default function loginReducer(state = initialState, {type, payload, user}) {
+//   switch (type) {
+//     // case LOGIN_REQUEST:
+//     //   return [...state, payload]
 //     case LOGIN_REQUEST:
 //       return {
 //         ...state,
@@ -26,32 +55,39 @@ const initialState = {
 //         ...state,
 //         isLoggedIn: false,
 //         isLoggingIn: false,
-//         error: action.error,
+//         error: error,
 //       };
 //     default:
 //       return state;
 //   }
 // }
 
-export default function loginReducer(state = initialState, {type, payload}) {
-  switch (type) {
-    case LOGIN_REQUEST:
-      return [...state, payload]
-    case LOGIN_SUCCESS:
-      return {
-        ...state,
-        isLoggedIn: true,
-        isLoggingIn: false,
-        error: null,
-      };
-    case LOGIN_FAILURE:
-      return {
-        ...state,
-        isLoggedIn: false,
-        isLoggingIn: false,
-        error: error,
-      };
-    default:
-      return state;
-  }
-}
+// export default function loginReducer(state = initialState, {type, user}) {
+//   switch (type) {
+//     case LOGIN_REQUEST:
+//       return {
+//         ...state,
+//         isLoggingIn: true,
+//         error: null,
+//         email : user.email,
+//         password : user.password
+//       };
+
+//     case LOGIN_SUCCESS:
+//       return {
+//         ...state,
+//         isLoggedIn: true,
+//         isLoggingIn: false,
+//         error: null,
+//       };
+//     case LOGIN_FAILURE:
+//       return {
+//         ...state,
+//         isLoggedIn: false,
+//         isLoggingIn: false,
+//         error: error,
+//       };
+//     default:
+//       return state;
+//   }
+// }

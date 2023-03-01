@@ -38,21 +38,16 @@ export default function LoginScreen({ navigation }) {
 
   const dispatch = useDispatch();
 
-  //       ...state,
-  //       isLoggedIn: true,
-  //       isLoggingIn: false,
-  //       error: null,
-
-  // const loading = useSelector(state => state.login.loading);
-  // const error = useSelector(state => state.login.error);
-
-  // const loading = useSelector(state => state.login.isLoggedIn);
-
   // const loggedIn = useSelector(state => state.login.isLoggedIn);
   // const error = useSelector(state => state.login.error);
 
   const loggedIn = useSelector(state => state.isLoggedIn);
+  const loggedInEmail = useSelector(state => state.email);
+  const loggedInPassword = useSelector(state => state.password);
   const error = useSelector(state => state.error);
+
+  console.log('loggedInEmail: ', loggedInEmail);
+  console.log('loggedInPassword: ', loggedInPassword);
 
   const handleLogin = useCallback(() => {
     dispatch(loginRequest());
@@ -71,7 +66,7 @@ export default function LoginScreen({ navigation }) {
   const keyboardHide = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
-    console.log(state);
+    console.log('state: ', state);
     setState(initialState);
   };
 
@@ -156,9 +151,10 @@ export default function LoginScreen({ navigation }) {
 
                 {error && <Text style={globalStyles.error}>{error}</Text>}
                 <Button title="Войти"
-                 onPress={handleLogin}
+                onPress={handleLogin}
                //  disabled={loading}
                 // onPress={handleSubmit}
+                // onPress={() => dispatch(loginRequest())}
                  disabled={!isValid}
                   />
               </TouchableOpacity>
