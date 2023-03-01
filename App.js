@@ -17,12 +17,11 @@ const loadApplication = async () => {
     'DMMono-Regular': require('./assets/fonts/DMMono-Regular.ttf'),
   });
 };
-const AuthContext = React.createContext();
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
- const routing = useRoute(true);
- // const routing = useRoute(false);
+ // const routing = useRoute(true);
+const routing = useRoute(false);
 
  
 
@@ -36,23 +35,13 @@ export default function App() {
     );
   }
 
-  // return (
-  //   <>
-  //  <Provider store={store}>
-  //  <NavigationContainer>
-  //      {routing}
-  //     </NavigationContainer>
-  //   </Provider>
-  //   </>
-  // );
   return (
     <>
-  
-   <NavigationContainer>
    <Provider store={store}>
+   <NavigationContainer>
        {routing}
-       </Provider>
       </NavigationContainer>
+    </Provider>
     </>
   );
 }

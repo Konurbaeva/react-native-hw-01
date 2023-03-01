@@ -32,21 +32,27 @@ export default function LoginScreen({ navigation }) {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [isValid, setIsValid] = useState(false);
-  const [error, setError]  = useState('');
+ // const [error, setError]  = useState('');
 
   const [dimensions, setDimensions] = useState(Dimensions.get('window').width - 20 * 2);
 
   const dispatch = useDispatch();
 
+  //       ...state,
+  //       isLoggedIn: true,
+  //       isLoggingIn: false,
+  //       error: null,
 
-  // isLoggedIn: false,
-  // isLoggingIn: false,
-  // error: null,
   // const loading = useSelector(state => state.login.loading);
   // const error = useSelector(state => state.login.error);
 
-  // const loading = useSelector(state => state.isLoggedIn);
-  // const error = useSelector(state => state.error);
+  // const loading = useSelector(state => state.login.isLoggedIn);
+
+  // const loggedIn = useSelector(state => state.login.isLoggedIn);
+  // const error = useSelector(state => state.login.error);
+
+  const loggedIn = useSelector(state => state.isLoggedIn);
+  const error = useSelector(state => state.error);
 
   const handleLogin = useCallback(() => {
     dispatch(loginRequest());
@@ -74,7 +80,7 @@ export default function LoginScreen({ navigation }) {
       const width = Dimensions.get('window').width;
       setDimensions(width);
     };
-    dimensionsHandler = Dimensions.addEventListener('change', onChange);
+    const dimensionsHandler = Dimensions.addEventListener('change', onChange);
 
     return () => dimensionsHandler.remove();
   }, []);
@@ -151,9 +157,9 @@ export default function LoginScreen({ navigation }) {
                 {error && <Text style={globalStyles.error}>{error}</Text>}
                 <Button title="Войти"
                  onPress={handleLogin}
-                 disabled={loading}
+               //  disabled={loading}
                 // onPress={handleSubmit}
-                 // disabled={!isValid}
+                 disabled={!isValid}
                   />
               </TouchableOpacity>
 
