@@ -31,35 +31,20 @@ export default function LoginScreen({ navigation }) {
   const [isReady, setIsReady] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
-  const [isValid, setIsValid] = useState(false);
- // const [error, setError]  = useState('');
+  const [password, setPassword] = useState('');
 
+  const [isValid, setIsValid] = useState(false);
+
+ // const [error, setError]  = useState('');
   const [dimensions, setDimensions] = useState(Dimensions.get('window').width - 20 * 2);
 
   const dispatch = useDispatch();
 
-  const loggedIn = useSelector(state => state.isLoggedIn);
-  const loggedInEmail = useSelector(state => state.email);
-  const loggedInPassword = useSelector(state => state.password);
-  const error = useSelector(state => state.error);
-
-  console.log('loggedInEmail: ', loggedInEmail)
-  console.log('loggedInPassword: ', loggedInPassword)
-
-
-  const handleLogin = useCallback(() => {
-    dispatch(loginRequest());
-    // Other login logic
-  }, [dispatch]);
-
-  const toggleShowPassword = () => setShowPassword(!showPassword);
-
   const handleSubmit = () => {
-    console.log('Submitted');
-    setEmail('');
-    setIsValid(false);
-    setError(null);
-  };
+    dispatch(login(email, password))
+  }
+  
+  const toggleShowPassword = () => setShowPassword(!showPassword);
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
@@ -117,9 +102,12 @@ export default function LoginScreen({ navigation }) {
                   style={globalStyles.input}
                   textAlign={'center'}
                   placeholder="Адрес электронной почты"
-                  value={state.email}
-                  onChangeText={value => setState(prevState => ({ ...prevState, email: value }))}
-                  // value={email}
+                 //  value={state.email}
+                  value={email}
+                 // onChangeText={value => setState(prevState => ({ ...prevState, email: value }))}
+
+                  // onPress={() => dispatch(login())}
+          
                  
                 />
               </View>
@@ -131,7 +119,8 @@ export default function LoginScreen({ navigation }) {
                   secureTextEntry={!showPassword}
                   onFocus={() => setIsShowKeyboard(true)}
                   placeholder="Пароль"
-                  value={state.password}
+                 // value={state.password}
+                  value={password}
                   onChangeText={value => setState(prevState => ({ ...prevState, password: value }))}
                 />
                 <TouchableOpacity onPress={toggleShowPassword} style={globalStyles.iconContainer}>
@@ -141,18 +130,15 @@ export default function LoginScreen({ navigation }) {
               <TouchableOpacity
                 activeOpacity={0.7}
                 style={globalStyles.button}
-                // onPress={() => setIsShowKeyboard(false)}
+             
                 onPress={() => navigation.navigate('Home')}
                 disabled={!isValid}
               >
-                {/* <Text style={globalStyles.buttonTitle}>Войти</Text> */}
+              
 
                 {error && <Text style={globalStyles.error}>{error}</Text>}
                 <Button title="Войти"
-                onPress={() => {handleLogin}}
-               //  disabled={loading}
-                // onPress={handleSubmit}
-               
+                onPress={handleSubmit}
                  disabled={!isValid}
                   />
               </TouchableOpacity>
