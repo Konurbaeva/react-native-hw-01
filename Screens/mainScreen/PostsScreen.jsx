@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 const PostsScreen = ({route}) => {
-  console.log("route.params: ", route.params)
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    setPosts(prevState => [...prevState, route.params.photo])
+   
+  }, [route.params]);
+
+  //console.log("route.params: ", route.params)
+  console.log('posts: ', posts)
   return (
     <View style={styles.container}>
       <Text>PostsScreen</Text>
