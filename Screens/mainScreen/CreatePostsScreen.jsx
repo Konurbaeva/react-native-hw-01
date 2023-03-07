@@ -46,12 +46,12 @@ const CreatePostsScreen = ({navigation}) => {
           </View>
         )}
         <TouchableOpacity onPress={takePhoto} style={styles.snapContainer}>
-          <Text style={styles.snap}>SNAP</Text>
+          <Text style={styles.snap}>Загрузите фото</Text>
         </TouchableOpacity>
       </Camera>
       <View>
       <TouchableOpacity onPress={sendPhoto} style={styles.sendBtn}>
-      <Text style={styles.sendLabel}>SEND</Text>
+      <Text style={styles.sendLabel}>Опубликовать</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -61,6 +61,7 @@ const CreatePostsScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    color: "#fff",
   },
   camera: {
     flex: 1,
@@ -91,15 +92,15 @@ const styles = StyleSheet.create({
   sendBtn: {
     marginHorizontal: 30,
     height: 40,
-    borderWidth: 2,
-    borderColor: "#20b2aa",
+    backgroundColor: "#FF6C00",
+    borderWidth: 1,
     borderRadius: 10,
     marginTop: 20,
     justifyContent: "center",
     alignItems: "center",
   },
   sendLabel: {
-    color: "#20b2aa",
+   
     fontSize: 20,
   }
 });
