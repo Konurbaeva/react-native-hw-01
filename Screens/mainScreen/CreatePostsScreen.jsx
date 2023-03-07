@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const CreatePostsScreen = () => {
+const CreatePostsScreen = ({navigation}) => {
   const [camera, setCamera] = useState(null);
   const [photo, setPhoto] = useState('');
 
@@ -13,6 +13,11 @@ const CreatePostsScreen = () => {
 
     console.log('photo', photo.uri);
   };
+
+  const sendPhoto = () => {
+    console.log('navigation ', navigation)
+    navigation.navigate("Posts", { photo })
+  }
 
   return (
     <View style={styles.container}>
@@ -27,7 +32,7 @@ const CreatePostsScreen = () => {
         </TouchableOpacity>
       </Camera>
       <View>
-      <TouchableOpacity onPress={takePhoto} style={styles.sendBtn}>
+      <TouchableOpacity onPress={sendPhoto} style={styles.sendBtn}>
       <Text style={styles.sendLabel}>SEND</Text>
         </TouchableOpacity>
       </View>
@@ -53,7 +58,7 @@ const styles = StyleSheet.create({
     borderColor: "#ff0000",
     width: 70,
     height: 70,
-    borderRadius: 50,
+    borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 20,
