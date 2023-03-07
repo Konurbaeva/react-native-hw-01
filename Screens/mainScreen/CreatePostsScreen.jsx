@@ -16,13 +16,10 @@ const CreatePostsScreen = ({navigation}) => {
     console.log('latitude: ', location.coords.latitude)
 
     setPhoto(photo.uri);
-
-    console.log('photo', photo.uri);
   };
 
   const sendPhoto = () => {
     console.log('navigation ', navigation)
-    // navigation.navigate("Posts", { photo })
     navigation.navigate("DefaultScreen", { photo })
   }
 
