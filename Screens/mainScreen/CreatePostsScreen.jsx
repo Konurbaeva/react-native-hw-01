@@ -22,7 +22,8 @@ const CreatePostsScreen = ({navigation}) => {
 
   const sendPhoto = () => {
     console.log('navigation ', navigation)
-    navigation.navigate("Posts", { photo })
+    // navigation.navigate("Posts", { photo })
+    navigation.navigate("DefaultScreen", { photo })
   }
 
 
