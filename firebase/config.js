@@ -1,30 +1,19 @@
 import * as firebase from "firebase";
 import "firebase/auth";
 
-// Your web app's Firebase configuration
-// var firebaseConfig = {
-//   apiKey: "AIzaSyDFauNPYaTGMGWKEvyHdTh8m_kfhKDiQuU",
-//   authDomain: "rn-social-391ec.firebaseapp.com",
-//   databaseURL: "https://rn-social-391ec.firebaseio.com",
-//   projectId: "rn-social-391ec",
-//   storageBucket: "rn-social-391ec.appspot.com",
-//   messagingSenderId: "974670373504",
-//   appId: "1:974670373504:web:fe01e1286f5ad11ff0fc65",
-// };
-// // Initialize Firebase
-// export default firebase.initializeApp(firebaseConfig);
 const firebaseConfig = {
-    apiKey: "API_KEY",
-    authDomain: "DOMAIN",
-    databaseURL: "URL",
-    projectId: "PROJECT_ID",
-    storageBucket: "STORAGE",
-    messagingSenderId: "SENDER_ID",
-    appId: "APP_ID",
+    apiKey: "AIzaSyA5bBmrs4O7VzueRc-QqRoQxpwHRP_uiLk",
+    authDomain: "rn-social-22319.firebaseapp.com",
+    projectId: "rn-social-22319",
+    storageBucket: "rn-social-22319.appspot.com",
+    messagingSenderId: "891645863566",
+    appId: "1:891645863566:web:ad8f32beac463f4b2a0bdf",
+    measurementId: "G-4ES172CGDF"
   };
   
-  firebase.initializeApp(firebaseConfig);
+//   firebase.initializeApp(firebaseConfig);
   
-  const auth = firebase.auth();
+//   const auth = firebase.auth();
   
-  export { auth };
+//   export { auth };
+export default firebase.initializeApp(firebaseConfig);

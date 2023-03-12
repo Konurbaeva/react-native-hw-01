@@ -18,6 +18,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { globalStyles } from '../config/globalStyles';
+import { useDispatch } from 'react-redux';
+import {authSignOutUser, authSignUpUser } from "../redux/auth/authOperations"
 
 
 const initialState = {
@@ -30,12 +32,14 @@ export default function RegistrationScreen({ navigation }) {
   const [state, setState] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
 
+  const dispatch = useDispatch()
+
   const [dimensions, setDimensions] = useState(Dimensions.get('window').width - 20 * 2);
 
-  const keyboardHide = () => {
+  const handleSubmit = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
-    console.log(state);
+    dispatch(authSignUpUser(state));
     setState(initialState);
   };
 
@@ -54,7 +58,7 @@ export default function RegistrationScreen({ navigation }) {
 
 
   return (
-    <TouchableWithoutFeedback onPress={keyboardHide}>
+    <TouchableWithoutFeedback onPress={handleSubmit}>
       <View style={globalStyles.container}>
         <ImageBackground style={globalStyles.image} source={require('../assets/PhotoBG.png')}>
           <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
