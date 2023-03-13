@@ -1,3 +1,4 @@
+import * as firebase from 'firebase/app';
 import { initializeApp } from 'firebase/app';
 // Optionally import the services that you want to use
 // import {...} from "firebase/auth";
@@ -16,10 +17,7 @@ const firebaseConfig = {
   measurementId: "G-4ES172CGDF"
 };
 
-  export const app = initializeApp(firebaseConfig);
-  // const auth = app.auth();
+/* const app = initializeApp(firebaseConfig);
+export default app */
 
-  // export { auth };
-
- //  export default app
-// export default firebase.initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
