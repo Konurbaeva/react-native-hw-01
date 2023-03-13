@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
+import { app } from "./firebase/config"
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 
 //import { store } from './redux/store';
 import store from './redux/store';
@@ -21,8 +23,14 @@ const loadApplication = async () => {
 export default function App() {
   const [isReady, setIsReady] = useState(false);
  //  const routing = useRoute(true);
+ const [user, setUser] = useState(null)
+ 
  const routing = useRoute(false);
+ // instead of boolean flag using user
+ // const routing = useRoute(user);
 
+ let auth = getAuth()
+ auth.onAuthStateChanged((user) => setUser(user))
 
   if (!isReady) {
     return (
