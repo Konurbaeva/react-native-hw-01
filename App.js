@@ -25,9 +25,9 @@ export default function App() {
  //  const routing = useRoute(true);
  const [user, setUser] = useState(null)
  
- const routing = useRoute(false);
+const routing = useRoute(false);
  // instead of boolean flag using user
- // const routing = useRoute(user);
+  //  const routing = useRoute(user);
 
  let auth = getAuth()
  auth.onAuthStateChanged((user) => setUser(user))
