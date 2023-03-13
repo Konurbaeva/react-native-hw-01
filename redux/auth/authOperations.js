@@ -1,11 +1,5 @@
-// import app from "../../firebase/config"
-
 import { app } from "../../firebase/config"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-
-// const auth = getAuth(app);
-
-console.log("APP: ", app)
 
 export const authSignUpUser = ({ email, password }) => async (
   dispatch,
