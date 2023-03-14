@@ -1,30 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
-import { TouchableOpacity } from 'react-native';
 import * as Location from 'expo-location';
 
+//import { db, storage } from "../../firebase/config"
 import db from "../../firebase/config"
 
 const CreatePostsScreen = ({navigation}) => {
   const [camera, setCamera] = useState(null);
-  const [photo, setPhoto] = useState('');
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [photo, setPhoto] = useState(null);
+  const [message, setMessage] = useState('')
+  const [comment, setComment] = useState("");
+  const [location, setLocation] = useState(null)
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestPermissionsAsync();
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
 
   const takePhoto = async () => {
-    const photo = await camera.takePictureAsync();
-    const location = await Location.getCurrentPositionAsync()
-    console.log('longitude: ', location.coords.longitude)
-    console.log('latitude: ', location.coords.latitude)
-
-    setPhoto(photo.uri);
+    const { uri } = await camera.takePictureAsync();
+    const location = await Location.getCurrentPositionAsync();
+    setPhoto(uri);
+    console.log("photo uri ", uri);
   };
 
   const sendPhoto = () => {
-   
-    uploadPhotoToServer()
-    navigation.navigate("DefaultScreen", { photo })
-  }
+    uploadPhotoToServer();
+    navigation.navigate("DefaultScreen", { photo });
+  };
 
   const uploadPhotoToServer = async () => {
     const response = await fetch(photo);
@@ -34,7 +42,16 @@ const CreatePostsScreen = ({navigation}) => {
 
     const data = await db.storage().ref(`postImage/${uniquePostId}`).put(file);
     console.log("data", data);
+
+    const processedPhoto = await db
+    .storage()
+    .ref("postImage")
+    .child(uniquePostId)
+    .getDownloadURL();
+
+  console.log("processedPhoto", processedPhoto);
   };
+
 
   useEffect(() => {
     (async () => { 
@@ -59,6 +76,9 @@ const CreatePostsScreen = ({navigation}) => {
         </TouchableOpacity>
       </Camera>
       <View>
+      <View style={styles.inputContainer}>
+          <TextInput style={styles.input} onChangeText={setComment} />
+        </View>
       <TouchableOpacity onPress={sendPhoto} style={styles.sendBtn}>
       <Text style={styles.sendLabel}>Опубликовать</Text>
         </TouchableOpacity>
@@ -111,7 +131,16 @@ const styles = StyleSheet.create({
   sendLabel: {
    
     fontSize: 20,
-  }
+  },
+  inputContainer: {
+    marginHorizontal: 10,
+  },
+  input: {
+    height: 50,
+    borderWidth: 1,
+    borderColor: "#fff",
+    borderBottomColor: "#20b2aa",
+  },
 });
 
 export default CreatePostsScreen;
