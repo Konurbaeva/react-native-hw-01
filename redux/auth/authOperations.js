@@ -1,5 +1,10 @@
 import { app } from '../../firebase/config';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth';
 
 import { authSlice } from './authReducer';
 
@@ -40,7 +45,7 @@ import { authSlice } from './authReducer';
 //   };
 
 export const authSignUpUser =
-  ({ email, password}) =>
+  ({ email, password, nickName }) =>
   async (dispatch, getState) => {
     let auth = getAuth();
     console.log('AUTH ', auth);
@@ -50,25 +55,7 @@ export const authSignUpUser =
 
       const user = await auth.currentUser;
 
-      //  user.updateProfile({
-      //   displayName: email,
-      //  })
-      updateProfile({
-        displayName: email,
-       })
-
-      const { displayName } = user;
-      console.log('DISPLAYNAME ------------------- ', user.displayName);
-      console.log('USER ------------------- ', user);
-
-      const userUpdateProfile = {
-        userId: user.uid,
-        nickName: user.displayName,
-      };
-
-      dispatch(authSlice.actions.updateUserProfile(userUpdateProfile));
-
-      // dispatch(authSlice.actions.updateUserProfile({userId: user.user.uid}))
+      dispatch(authSlice.actions.updateUserProfile({userId: user.uid}))
     } catch (error) {
       console.log('error', error);
       console.log('error.message', error.message);
