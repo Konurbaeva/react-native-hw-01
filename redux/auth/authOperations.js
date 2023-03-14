@@ -1,46 +1,57 @@
+import { app } from '../../firebase/config';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
+import { authSlice } from './authReducer';
 
-import { app } from "../../firebase/config"
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+export const authSignUpUser =
+  ({ email, password}) =>
+  async (dispatch, getState) => {
+    let auth = getAuth();
+    console.log('AUTH ', auth);
+    try {
+      // const user = await createUserWithEmailAndPassword(auth, email, password)
+      await createUserWithEmailAndPassword(auth, email, password);
 
-import { authSlice } from "./authReducer";
+      const user = await auth.currentUser;
 
-export const authSignUpUser = ({ email, password }) => async (
-  dispatch,
-  getState
-) => {
+      // user.updateProfile({
+      //    displayName: email,
+      // });
+       user.updateProfile({
+        displayName: email,
+       })
 
-  let auth = getAuth()
-  console.log("email, password ", email, password);
-  try {
-  
-   const user = await createUserWithEmailAndPassword(auth, email, password)
+      const { displayName } = user;
+      console.log('DISPLAYNAME ------------------- ', user.displayName);
+      console.log('USER ------------------- ', user);
 
-   dispatch(authSlice.actions.updateUserProfile({userId: user.user.uid}))
+      const userUpdateProfile = {
+        userId: user.uid,
+        nickName: displayName,
+      };
 
-   console.log("user", user);
-   console.log("user.user.uid: ", user.user.uid);
-  } catch (error) {
-    console.log("error", error);
-    console.log("error.message", error.message);
-  }
-};
-  
-export const authSignInUser = ({ email, password }) => async (
-  dispatch,
-  getState
-) => {
+      dispatch(authSlice.actions.updateUserProfile(userUpdateProfile));
 
-  let auth = getAuth()
-  console.log("email, password ", email, password);
-  try {
-  // const user = app.auth().createUserWithEmailAndPassword(email, password)
-   const user = await signInWithEmailAndPassword(auth, email, password)
-   console.log("user", user);
-  } catch (error) {
-    console.log("error", error);
-    console.log("error.message", error.message);
-  }
-};
+      // dispatch(authSlice.actions.updateUserProfile({userId: user.user.uid}))
+    } catch (error) {
+      console.log('error', error);
+      console.log('error.message', error.message);
+    }
+  };
+
+export const authSignInUser =
+  ({ email, password }) =>
+  async (dispatch, getState) => {
+    let auth = getAuth();
+    console.log('email, password ', email, password);
+    try {
+      // const user = app.auth().createUserWithEmailAndPassword(email, password)
+      const user = await signInWithEmailAndPassword(auth, email, password);
+      console.log('user', user);
+    } catch (error) {
+      console.log('error', error);
+      console.log('error.message', error.message);
+    }
+  };
 
 export const authSignOutUser = () => async (dispatch, getState) => {};
