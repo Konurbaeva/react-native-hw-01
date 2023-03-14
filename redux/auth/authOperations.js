@@ -10,6 +10,8 @@ import {
 
 import { authSlice } from './authReducer';
 
+const { updateUserProfile, authStateChange, authSignOut } = authSlice.actions;
+
 export const authSignUpUser =
   ({ email, password, nickName }) =>
   async (dispatch, getState) => {
@@ -21,7 +23,7 @@ export const authSignUpUser =
 
       const user = await auth.currentUser;
 
-      dispatch(authSlice.actions.updateUserProfile({ userId: user.uid }));
+      dispatch(updateUserProfile({ userId: user.uid }));
     } catch (error) {
       console.log('error', error);
       console.log('error.message', error.message);
@@ -34,7 +36,6 @@ export const authSignInUser =
     let auth = getAuth();
     console.log('email, password ', email, password);
     try {
-      // const user = app.auth().createUserWithEmailAndPassword(email, password)
       const user = await signInWithEmailAndPassword(auth, email, password);
       console.log('user', user);
     } catch (error) {
@@ -45,7 +46,7 @@ export const authSignInUser =
 
 export const authSignOutUser = () => async (dispatch, getState) => {
   await signOut();
-  dispatch(authSlice.actions.authSignOut());
+  dispatch(authSignOut());
 };
 
 export const authStateChangeUser = () => async (dispatch, getState) => {
@@ -55,8 +56,8 @@ export const authStateChangeUser = () => async (dispatch, getState) => {
         userId: user.uid,
       };
 
-      dispatch(authSlice.actions.authStateChange({ stateChange: true }));
-      dispatch(authSlice.actions.updateUserProfile(userUpdateProfile));
+      dispatch(authStateChange({ stateChange: true }));
+      dispatch(updateUserProfile(userUpdateProfile));
     }
   });
 };
