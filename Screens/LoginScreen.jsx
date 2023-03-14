@@ -18,6 +18,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { useDispatch, useSelector } from 'react-redux';
+import {authSignInUser, authSignOutUser} from "../redux/auth/authOperations"
+
 import AppLoading from 'expo-app-loading';
 
 import { globalStyles } from '../config/globalStyles';
@@ -35,22 +37,26 @@ export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [error, setError] = useState(null);
-
+  
   const [dimensions, setDimensions] = useState(Dimensions.get('window').width - 20 * 2);
 
   const toggleShowPassword = () => setShowPassword(!showPassword);
 
-  const handleSubmit = () => {
-    console.log('Submitted');
-    setEmail('');
-    setIsValid(false);
-    setError(null);
-  };
+  const dispatch = useDispatch();
+
+
+  // const handleSubmit = () => {
+  //   console.log('Submitted');
+  //   setEmail('');
+  //   setIsValid(false);
+  //   setError(null);
+  // };
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
-    console.log(state);
+    console.log('login state: ', state);
+    dispatch(authSignInUser(state))
     setState(initialState);
   };
 
@@ -134,7 +140,9 @@ export default function LoginScreen({ navigation }) {
                 {/* <Text style={globalStyles.buttonTitle}>Войти</Text> */}
 
                 {error && <Text style={globalStyles.error}>{error}</Text>}
-                <Button title="Войти" onPress={handleSubmit} disabled={!isValid} />
+                {/* <Button title="Войти" onPress={handleSubmit} disabled={!isValid} /> */}
+                <Button title="Войти" onPress={keyboardHide} disabled={!isValid} />
+                
               </TouchableOpacity>
 
               <Button

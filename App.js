@@ -1,16 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { Provider } from 'react-redux';
+import { Provider, useSelector, useDispatch } from 'react-redux';
+import { app } from './firebase/config';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from 'firebase/auth';
 
-//import { store } from './redux/store';
 import store from './redux/store';
 
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
 import 'expo-dev-menu';
-
-import { useRoute } from "./router"
+import Main from './components/Main';
 
 const loadApplication = async () => {
   await Font.loadAsync({
@@ -20,10 +25,6 @@ const loadApplication = async () => {
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
- const routing = useRoute(true);
- // const routing = useRoute(false);
-
- 
 
   if (!isReady) {
     return (
@@ -37,11 +38,9 @@ export default function App() {
 
   return (
     <>
-   <Provider store={store}>
-   <NavigationContainer>
-       {routing}
-      </NavigationContainer>
-    </Provider>
+      <Provider store={store}>
+       <Main/>
+      </Provider>
     </>
   );
 }

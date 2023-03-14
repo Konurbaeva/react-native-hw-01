@@ -18,7 +18,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { globalStyles } from '../config/globalStyles';
-
+import { useDispatch } from 'react-redux';
+import { authSignOutUser, authSignUpUser } from '../redux/auth/authOperations';
 
 const initialState = {
   email: '',
@@ -30,12 +31,15 @@ export default function RegistrationScreen({ navigation }) {
   const [state, setState] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
 
+  const dispatch = useDispatch();
+
   const [dimensions, setDimensions] = useState(Dimensions.get('window').width - 20 * 2);
 
-  const keyboardHide = () => {
+  const handleSubmit = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
-    console.log(state);
+    
+    dispatch(authSignUpUser(state));
     setState(initialState);
   };
 
@@ -52,20 +56,18 @@ export default function RegistrationScreen({ navigation }) {
     return () => dimensionsHandler.remove();
   }, []);
 
-
   return (
-    <TouchableWithoutFeedback onPress={keyboardHide}>
+    <TouchableWithoutFeedback onPress={handleSubmit}>
       <View style={globalStyles.container}>
         <ImageBackground style={globalStyles.image} source={require('../assets/PhotoBG.png')}>
           <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-          
             <Image
               width={200}
               height={200}
               style={globalStyles.imageWhite}
               source={require('../assets/BG.png')}
             />
-              <Image
+            <Image
               style={globalStyles.imageRectangle}
               source={require('../assets/Rectangle.png')}
             />
@@ -112,10 +114,16 @@ export default function RegistrationScreen({ navigation }) {
                   <Ionicons name={showPassword ? 'eye-off' : 'eye'} size={24} color="gray" />
                 </TouchableOpacity>
               </View>
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 activeOpacity={0.7}
                 style={globalStyles.button}
                 onPress={() => setIsShowKeyboard(false)}
+              > */}
+
+              <TouchableOpacity
+                activeOpacity={0.8}
+                style={globalStyles.button}
+                onPress={handleSubmit}
               >
                 <Text style={globalStyles.buttonTitle}>Зарегистрироваться</Text>
               </TouchableOpacity>
