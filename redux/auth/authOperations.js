@@ -44,9 +44,7 @@ export const authSignInUser =
   };
 
 export const authSignOutUser = () => async (dispatch, getState) => {
-  let auth = getAuth();
-  await auth.signOut();
-
+  await signOut();
   dispatch(authSlice.actions.authSignOut());
 };
 

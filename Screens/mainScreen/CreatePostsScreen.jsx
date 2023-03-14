@@ -4,6 +4,8 @@ import { Camera } from 'expo-camera';
 import { TouchableOpacity } from 'react-native';
 import * as Location from 'expo-location';
 
+import db from "../../firebase/config"
+
 const CreatePostsScreen = ({navigation}) => {
   const [camera, setCamera] = useState(null);
   const [photo, setPhoto] = useState('');
@@ -19,10 +21,20 @@ const CreatePostsScreen = ({navigation}) => {
   };
 
   const sendPhoto = () => {
-    console.log('navigation ', navigation)
+   
+    uploadPhotoToServer()
     navigation.navigate("DefaultScreen", { photo })
   }
 
+  const uploadPhotoToServer = async () => {
+    const response = await fetch(photo);
+    const file = await response.blob();
+
+    const uniquePostId = Date.now().toString();
+
+    const data = await db.storage().ref(`postImage/${uniquePostId}`).put(file);
+    console.log("data", data);
+  };
 
   useEffect(() => {
     (async () => { 
