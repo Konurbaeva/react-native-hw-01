@@ -13,6 +13,7 @@ const Main = () => {
   }, []);
 
   const routing = useRoute(stateChange);
+ // const routing = useRoute(true);
   useEffect(() => {}, []);
   return <NavigationContainer>{routing}</NavigationContainer>;
 };
