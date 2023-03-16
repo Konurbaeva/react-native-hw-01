@@ -61,3 +61,21 @@ export const authStateChangeUser = () => async (dispatch, getState) => {
     }
   });
 };
+
+// export const authStateChangeUser = () => async (dispatch, getState) => {
+//  try {
+//   await onAuthStateChanged(user => {
+//     if (user) {
+//       const userUpdateProfile = {
+//         userId: user.uid,
+//       };
+
+//       dispatch(authStateChange({ stateChange: true }));
+//       dispatch(updateUserProfile(userUpdateProfile));
+//     }
+//   });
+//  } catch (error) {
+//   console.log('error', error);
+//   console.log('error.message', error.message);
+// }
+// };

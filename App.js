@@ -1,14 +1,5 @@
 import { useEffect, useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { Provider, useSelector, useDispatch } from 'react-redux';
-import { app } from './firebase/config';
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-} from 'firebase/auth';
-
 import store from './redux/store';
 
 import * as Font from 'expo-font';
