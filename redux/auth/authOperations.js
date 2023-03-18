@@ -1,4 +1,7 @@
-import { app } from '../../firebase/config';
+// import { app } from '../../firebase/config';
+
+import auth from "../../firebase/config"
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -15,10 +18,9 @@ const { updateUserProfile, authStateChange, authSignOut } = authSlice.actions;
 export const authSignUpUser =
   ({ email, password, nickName }) =>
   async (dispatch, getState) => {
-    let auth = getAuth();
-    console.log('AUTH ', auth);
+
     try {
-      // const user = await createUserWithEmailAndPassword(auth, email, password)
+      
       await createUserWithEmailAndPassword(auth, email, password);
 
       const user = await auth.currentUser;
