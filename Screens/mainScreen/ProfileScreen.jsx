@@ -19,7 +19,7 @@ const ProfileScreen = () => {
     // dispatch(authSignUpUser(state));
     // setState(initialState);
 
-    dispatch(authSignOutUser());
+    dispatch(authSignOutUser(state));
   };
 
   return (
