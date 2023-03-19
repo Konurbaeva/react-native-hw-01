@@ -1,6 +1,4 @@
 import { auth } from '../../firebase/config';
-// import auth from "../../firebase/config"
-
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -17,9 +15,7 @@ const { updateUserProfile, authStateChange, authSignOut } = authSlice.actions;
 export const authSignUpUser =
   ({ email, password, nickName }) =>
   async (dispatch, getState) => {
-
     try {
-      
       await createUserWithEmailAndPassword(auth, email, password);
 
       const user = await auth.currentUser;
@@ -31,27 +27,45 @@ export const authSignUpUser =
     }
   };
 
-export const authSignInUser =
+  export const authSignInUser =
   ({ email, password }) =>
   async (dispatch, getState) => {
-    let auth = getAuth();
+ 
     console.log('email, password ', email, password);
     try {
-      const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log('user', user);
+
+      await signInWithEmailAndPassword(auth, email, password);
+     // const user = await auth.currentUser;
+     //  dispatch(updateUserProfile({ userId: user.uid }));
+     const user = await auth.currentUser;
+     dispatch(authStateChange({ userId: user.uid }));
+
     } catch (error) {
       console.log('error', error);
       console.log('error.message', error.message);
     }
   };
 
-export const authSignOutUser = () => async (dispatch, getState) => {
-  await signOut();
-  dispatch(authSignOut());
-};
+export const authSignOutUser =
+  ({ email, password, nickName }) =>
+  async (dispatch, getState) => {
+    try {
+      await signOut(auth, email, password);
+      const user = await auth.currentUser;
+
+      // dispatch(authSignOut({ userId: user.uid }));
+      dispatch(authSignOut(user));
+      
+    } catch (error) {
+      console.log('error', error);
+      console.log('error.message', error.message);
+    }
+  };
+
 
 export const authStateChangeUser = () => async (dispatch, getState) => {
-  await auth.onAuthStateChanged(user => {
+ try{
+  await onAuthStateChanged(user => {
     if (user) {
       const userUpdateProfile = {
         userId: user.uid,
@@ -61,11 +75,14 @@ export const authStateChangeUser = () => async (dispatch, getState) => {
       dispatch(updateUserProfile(userUpdateProfile));
     }
   });
+ } catch (error) {
+  console.log('error', error);
+  console.log('error.message', error.message);
+}
 };
 
 // export const authStateChangeUser = () => async (dispatch, getState) => {
-//  try {
-//   await onAuthStateChanged(user => {
+//   await auth.onAuthStateChanged(user => {
 //     if (user) {
 //       const userUpdateProfile = {
 //         userId: user.uid,
@@ -75,8 +92,4 @@ export const authStateChangeUser = () => async (dispatch, getState) => {
 //       dispatch(updateUserProfile(userUpdateProfile));
 //     }
 //   });
-//  } catch (error) {
-//   console.log('error', error);
-//   console.log('error.message', error.message);
-// }
 // };

@@ -15,7 +15,7 @@ const Main = () => {
     dispatch(authStateChangeUser());
   }, [stateChange]);
 
- const routing = useRoute(stateChange);
+  const routing = useRoute(stateChange);
  // const routing = useRoute(true);
   useEffect(() => {}, []);
   return <NavigationContainer>{routing}</NavigationContainer>;
