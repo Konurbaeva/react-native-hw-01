@@ -4,8 +4,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 
-// import { MaterialIcons } from '@expo/vector-icons';
-
 import RegistrationScreen from './Screens/RegistrationScreen';
 import LoginScreen from './Screens/LoginScreen';
 import PostsScreen from './Screens/mainScreen/PostsScreen';
@@ -52,9 +50,9 @@ export const useRoute = isSignedIn => {
           tabBarIcon: ({ focused, size, color }) => (
             <MaterialIcons name="post-add" size={size} color={color} />
           ),
-          headerRight: ({ focused, size, color }) => (
-            <MaterialIcons name="logout" size={35} color={color} />
-          ),
+          // headerRight: ({ focused, size, color }) => (
+          //   <MaterialIcons name="logout" size={35} color={color} />
+          // ),
         }}
         name="Posts"
         component={PostsScreen}

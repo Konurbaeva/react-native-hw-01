@@ -20,7 +20,7 @@ const DefaultScreenPosts = ({route, navigation}) => {
     getAllPost();
   }, []);
 
-  console.log('posts: ', posts)
+
   return (
     <View style={styles.container}>
     <FlatList data={posts} keyExtractor={(item, indx) => indx.toString()}

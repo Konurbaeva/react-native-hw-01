@@ -16,9 +16,6 @@ const ProfileScreen = () => {
   const dispatch = useDispatch();
 
   const signOut = () => {
-    // dispatch(authSignUpUser(state));
-    // setState(initialState);
-
     dispatch(authSignOutUser(state));
   };
 
