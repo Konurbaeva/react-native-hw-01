@@ -20,6 +20,8 @@ export const authSignUpUser =
 
       const user = await auth.currentUser;
 
+     // dispatch(updateUserProfile({ userId: user.uid, stateChange: true }));
+
       dispatch(updateUserProfile({ userId: user.uid }));
     } catch (error) {
       console.log('error', error);
@@ -65,10 +67,11 @@ export const authSignOutUser =
 
 export const authStateChangeUser = () => async (dispatch, getState) => {
  try{
-  await onAuthStateChanged(user => {
+  await onAuthStateChanged(auth, user => {
     if (user) {
       const userUpdateProfile = {
         userId: user.uid,
+      //  nickName: user.displayName,
       };
 
       dispatch(authStateChange({ stateChange: true }));
@@ -80,16 +83,3 @@ export const authStateChangeUser = () => async (dispatch, getState) => {
   console.log('error.message', error.message);
 }
 };
-
-// export const authStateChangeUser = () => async (dispatch, getState) => {
-//   await auth.onAuthStateChanged(user => {
-//     if (user) {
-//       const userUpdateProfile = {
-//         userId: user.uid,
-//       };
-
-//       dispatch(authStateChange({ stateChange: true }));
-//       dispatch(updateUserProfile(userUpdateProfile));
-//     }
-//   });
-// };
