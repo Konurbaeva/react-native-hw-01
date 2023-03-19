@@ -44,18 +44,11 @@ export default function LoginScreen({ navigation }) {
 
   const dispatch = useDispatch();
 
-
-  // const handleSubmit = () => {
-  //   console.log('Submitted');
-  //   setEmail('');
-  //   setIsValid(false);
-  //   setError(null);
-  // };
-
   const keyboardHide = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
-    console.log('login state: ', state);
+    
+
     dispatch(authSignInUser(state))
     setState(initialState);
   };
